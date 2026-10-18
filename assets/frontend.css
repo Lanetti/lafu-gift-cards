@@ -1,0 +1,355 @@
+/* LAFU Gift Cards: storefront. Inherits the theme's fonts and colours. */
+
+.lafu-gc-form {
+	--lafu-gc-accent: currentColor;
+	margin: 0 0 1.5em;
+}
+
+.lafu-gc-form [hidden] {
+	display: none !important;
+}
+
+.lafu-gc-form fieldset {
+	border: 0;
+	margin: 0 0 1.25em;
+	padding: 0;
+	min-width: 0;
+}
+
+.lafu-gc-form legend {
+	font-weight: 600;
+	margin-bottom: .5em;
+	padding: 0;
+}
+
+.lafu-gc-form p {
+	margin: 0 0 .75em;
+}
+
+.lafu-gc-form label {
+	display: block;
+}
+
+.lafu-gc-form input[type="text"],
+.lafu-gc-form input[type="number"],
+.lafu-gc-form input[type="date"],
+.lafu-gc-form textarea {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.lafu-gc-form small {
+	display: block;
+	opacity: .75;
+	margin-top: .25em;
+}
+
+.lafu-gc-form .lafu-gc-inline {
+	display: inline-flex;
+	gap: .4em;
+	align-items: center;
+	margin-top: .4em;
+	font-weight: 400;
+}
+
+.lafu-gc-chip {
+	display: inline-block !important;
+	margin: 0 .4em .4em 0;
+	cursor: pointer;
+}
+
+.lafu-gc-chip input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.lafu-gc-chip > span {
+	display: inline-block;
+	padding: .55em 1em;
+	border: 2px solid rgba(0, 0, 0, .15);
+	border-radius: 999px;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.lafu-gc-chip input:checked + span {
+	border-color: var(--lafu-gc-accent);
+	box-shadow: inset 0 0 0 1px var(--lafu-gc-accent);
+}
+
+.lafu-gc-chip input:focus-visible + span {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.lafu-gc-money {
+	display: flex;
+	align-items: center;
+	gap: .5em;
+	max-width: 12em;
+}
+
+.lafu-gc-redeem,
+.lafu-gc-block {
+	margin: 0 0 1.5em;
+}
+
+.lafu-gc-block {
+	margin: 0;
+	padding: 12px 0;
+}
+
+.lafu-gc-redeem-title {
+	font-weight: 600;
+	margin: 0 0 .5em;
+}
+
+.lafu-gc-redeem-row {
+	display: flex;
+	gap: .5em;
+	flex-wrap: wrap;
+	margin: 0;
+}
+
+.lafu-gc-redeem-row input {
+	flex: 1 1 12em;
+	min-width: 0;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+}
+
+.lafu-gc-saved {
+	margin: .6em 0 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: .4em;
+	align-items: center;
+}
+
+.lafu-gc-saved-card {
+	font-size: .9em;
+}
+
+.lafu-gc-redeem-message {
+	margin: .5em 0 0;
+	font-size: .95em;
+}
+
+.lafu-gc-redeem-message:empty {
+	display: none;
+}
+
+.lafu-gc-redeem-message.is-error {
+	color: #b42318;
+}
+
+.lafu-gc-block-list {
+	list-style: none;
+	margin: .6em 0 0;
+	padding: 0;
+}
+
+.lafu-gc-block-applied {
+	display: flex;
+	gap: .6em;
+	align-items: baseline;
+	margin: 0 0 .3em;
+}
+
+.lafu-gc-block-applied span {
+	flex: 1;
+}
+
+.lafu-gc-link,
+.lafu-gc-remove {
+	background: none;
+	border: 0;
+	padding: 0;
+	color: inherit;
+	text-decoration: underline;
+	cursor: pointer;
+	font-size: .9em;
+	margin-left: .4em;
+}
+
+.lafu-gc-print-page {
+	margin: 0;
+	padding: 32px 16px;
+	background: #f4f4f5;
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	color: #18181b;
+}
+
+.lafu-gc-print-wrap {
+	max-width: 520px;
+	margin: 0 auto;
+}
+
+.lafu-gc-print-wrap .lafu-gc-message {
+	margin: 20px 0 0;
+	font-style: italic;
+	white-space: pre-line;
+}
+
+.lafu-gc-print-wrap .lafu-gc-help {
+	margin: 20px 0 0;
+	font-size: 14px;
+	color: #52525b;
+}
+
+.lafu-gc-print-button {
+	margin-top: 24px;
+	padding: 10px 18px;
+	border: 0;
+	border-radius: 8px;
+	background: #18181b;
+	color: #fff;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.lafu-gc-balance-result {
+	margin-top: 1em;
+}
+
+@media print {
+	.lafu-gc-print-page {
+		background: #fff;
+		padding: 0;
+	}
+
+	.lafu-gc-print-button {
+		display: none;
+	}
+
+	.lafu-gc-card {
+		box-shadow: none !important;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+}
+
+.lafu-gc-preview {
+	max-width: 360px;
+	margin: 0 0 1.5em;
+}
+
+/* The preview stays in view while the buyer scrolls the choices. */
+.lafu-gc-preview {
+	position: sticky;
+	top: 12px;
+	z-index: 3;
+}
+
+.admin-bar .lafu-gc-preview {
+	top: 44px;
+}
+
+@media (min-width: 769px) {
+	.lafu-gc-preview {
+		top: 24px;
+	}
+
+	.admin-bar .lafu-gc-preview {
+		top: 56px;
+	}
+}
+
+/* Phones: a smaller card, so the choices below stay visible. */
+@media (max-width: 768px) {
+	.lafu-gc-preview {
+		max-width: 250px;
+	}
+
+	.lafu-gc-preview .lafu-gc-card__amount {
+		font-size: 26px;
+	}
+}
+
+
+.lafu-gc-preview .lafu-gc-card {
+	font-size: 15px;
+}
+
+.lafu-gc-preview .lafu-gc-card__amount {
+	font-size: 34px;
+}
+
+/* Cart and checkout blocks: a totals row like the coupon row above it
+   (spacing and divider come from wc-block-components-totals-wrapper). */
+.lafu-gc-block {
+	font-size: inherit;
+}
+
+.lafu-gc-block-body {
+	box-sizing: border-box;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.lafu-gc-block-toggle {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin: 0;
+	padding: 0 16px;
+	border: 0;
+	background: none;
+	color: inherit;
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+
+.lafu-gc-block-toggle:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 4px;
+}
+
+.lafu-gc-chevron {
+	width: 8px;
+	height: 8px;
+	margin-right: 6px;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: rotate(45deg) translateY(-3px);
+	transition: transform .15s;
+}
+
+.lafu-gc-block.is-open .lafu-gc-chevron {
+	transform: rotate(-135deg) translateY(-2px);
+}
+
+.lafu-gc-block-body {
+	margin-top: 12px;
+}
+
+.lafu-gc-block .lafu-gc-redeem-row input {
+	height: 48px;
+	padding: 0 12px;
+	border: 1px solid hsla(0, 0%, 7%, .8);
+	border-radius: 4px;
+	background: var(--wp--preset--color--base, #fff);
+	color: inherit;
+	font: inherit;
+	text-transform: uppercase;
+}
+
+.lafu-gc-block .lafu-gc-apply {
+	height: 48px;
+	padding: 0 20px;
+	border: 0;
+	border-radius: 4px;
+	background: var(--wp--preset--color--contrast, #111);
+	color: var(--wp--preset--color--base, #fff);
+	font: inherit;
+	cursor: pointer;
+}
+
+.lafu-gc-block .lafu-gc-apply:disabled {
+	opacity: .6;
+	cursor: wait;
+}

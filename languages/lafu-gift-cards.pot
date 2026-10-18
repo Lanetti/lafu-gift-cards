@@ -1,0 +1,1111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lafu-gift-cards\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: lafu-gift-cards\n"
+
+#: templates/emails/lafu-gift-card.php
+msgid "%1$s sent you a gift card to %2$s."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "%s expire in 30 days"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "%s is not a valid email address."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "%s paid with gift cards."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "%s returned to gift cards."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "A gift card cannot pay for a gift card."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "A gift card code needs at least 6 letters or digits."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "A gift card could not be charged: %s Please check the order total and try again."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "A gift card with this code already exists."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Actions"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Activated"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Active"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Active cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Add colour"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Add money with a plus amount, take money with a minus amount. The reason shows in the history."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-list-table.php
+msgid "All"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "All gift cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Amount"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Amount (%1$s to %2$s)"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Amount and payment"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Amount, design and who it is for, paid in cash, by card or given free"
+msgstr ""
+
+#: templates/emails/plain/lafu-gift-card.php
+msgid "Amount: %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Amounts"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Anonymous"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Back to cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Balance"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Balance after"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Balance changed."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Bring in cards you already sold, for example paper cards. Customers keep using their own codes."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Buyer email for the receipt"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "By"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Cancel card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Cancel this gift card? The remaining balance can no longer be used."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Cancelled"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Card designs"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-settings.php
+msgid "Card designs, colours and texts are under WooCommerce > Gift cards > Designs. Amounts and delivery are set on each gift card product."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Card in the shop"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Cash"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Cash in the shop"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Change balance"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Changed by the shop"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Check balance"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Checkout retried"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Checkout stopped"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Choose a CSV file"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Choose a CSV file to import."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Choose a delivery date between today and one year from now."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Choose amount"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Choose an amount between %1$s and %2$s."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Choose an amount."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "Christmas"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "Classic"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Close"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Code"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-settings.php
+msgid "Code prefix"
+msgstr ""
+
+#: templates/emails/plain/lafu-gift-card.php
+msgid "Code: %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Colour"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Colour %d"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Columns code and balance are required. initial, expires (YYYY-MM-DD or DD.MM.YYYY), email, name and note are optional. Comma or semicolon separated, with a header row."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Counter"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Create card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Create gift card product"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Create the gift card product your customers buy. You can change the amounts and designs before publishing it."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Created"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Date"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-settings.php
+msgid "Delete all gift cards and their history when the plugin is deleted. Leave off unless you are sure: open cards are money your customers own."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Delivery"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Delivery date"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Design"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Designs"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Designs saved."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Details"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Details saved."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Each gift card product shows one design. Pick it on the product, or make a new product from a design here, for example for Christmas."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Edit email text"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Email the card to the recipient"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Emailed %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Empty fields use the texts on the Designs page."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-email.php
+msgid "Enjoy your gift!"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks-integration.php
+msgid "Enter a gift card code."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Enter an amount and a reason."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Enter the recipient email address to send the card."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Enter the recipient email address."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Event"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Expired"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Export CSV"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "For example Happy holidays!"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "For example Thank you for shopping with us"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "For {name}"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Free (gift or compensation)"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "From"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "From {name}"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift Cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Gift card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Gift card %1$s (%2$s) created for %3$s."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Gift card %1$s cancelled. %2$s of it had already been used."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Gift card %1$s for %2$s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Gift card %1$s lowered by %2$s."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Gift card %1$s: %2$s left."
+msgstr ""
+
+#: lafu-gift-cards.php
+msgid "Gift card %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Gift card %s cancelled."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Gift card %s:"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks-integration.php
+msgid "Gift card added."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift card cancelled."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Gift card code"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Gift card code: %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-privacy.php
+msgid "Gift card codes and balances were kept, because the remaining balance belongs to whoever holds the card. Names, email addresses and messages were removed."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Gift card could not be created: %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift card created."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift card email sent."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift card not found."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Gift card removed."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Gift card saved to your account."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift card sold and saved as an order."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift card sold in the shop."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Gift card: %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Gift cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks.php
+msgid "Gift cards paying for this cart."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks.php
+msgid "Gift cards saved to the customer account."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "Gift ribbon"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Gift to %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Give a gift that always fits. Choose the amount, and send the card by email right away or on the day you choose."
+msgstr ""
+
+#: templates/emails/lafu-gift-card.php
+msgid "Go to the shop"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Got a gift card? Save it here so you can use it with one click at checkout."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks-integration.php
+msgid "Have a gift card?"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Heading"
+msgstr ""
+
+#: templates/emails/lafu-gift-card.php
+msgid "Hi %s,"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Highest amount"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "History"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-settings.php
+msgid "How long a new card is valid. 0 means no expiry date."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "I will do it myself"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Import"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Import at most %d cards at a time."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Import cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Import gift cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Imported"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Issued by the shop without payment"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-privacy.php
+msgid "LAFU Gift Cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "LAFU Gift Cards is ready."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Leave empty to send right after payment."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Let the buyer type any amount between the limits below."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Line %1$d: %2$s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Look and validity"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Lowest amount"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Make a CSV file"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Message"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "Minimal"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Name on the card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "New cards, online and in the shop"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "New product with this design"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "No expiry"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-list-table.php
+msgid "No gift cards found."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Not activated"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Not sent"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Note"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Open balance"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-settings.php
+msgid "Optional letters at the start of new codes, for example the shop initials."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Order"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Order %s cancelled or refunded"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Order %s refunded in part"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Other amount"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Own amount"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Paid order %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Paid with"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Paid with cards on orders"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Partial refund of order %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Payment for order %s did not finish"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Preview"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Print"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Print card"
+msgstr ""
+
+#: templates/emails/lafu-gift-card.php
+msgid "Print the card"
+msgstr ""
+
+#: templates/emails/plain/lafu-gift-card.php
+msgid "Print the card: %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Printed card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Printed card, sent by the shop"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Put %s back on this gift card?"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Ready amounts separated by commas, for example 25, 50, 100."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Reason"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Recipient"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Recipient email"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Recipient name"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Recipient, sender and expiry texts"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks-integration.php
+msgid "Remove"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Remove colour"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-settings.php
+msgid "Remove data on uninstall"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Return to card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Returned by the shop from order %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Returned from an order"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "Returned to the card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Rows with a code that already exists are skipped and listed after the import."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Save card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Save change"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Save designs"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Save details"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Search cards"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Sell a card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Sell this product as a gift card. Buyers choose the amount and who gets it."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Send anonymously"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Send email again"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Send it to someone else"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Send to at most %d people at a time."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Sender"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-email.php
+msgid "Sent to the person who receives a gift card, right after payment or on the chosen delivery date."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Settings"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Several people? Separate the addresses with commas. Each gets their own card."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Shop defaults for every card. A product can change them on its Gift card tab. Write them your way, or in your own language."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "Sold on order %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Sold this month"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks-integration.php
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Status"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-privacy.php
+msgid "Suggested text for shops that sell gift cards:"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "System or customer"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Text on the card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The amount must be more than zero."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The balance is not a number."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "The card buyers get. For another occasion, make another gift card product with its own design."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "The card is now the product image."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The code and QR code are created when you save. A paid sale is saved as a normal order, so it appears in your sales and bookkeeping."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The email could not be sent. Check that the gift card email is turned on under WooCommerce > Settings > Emails."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The expiry date is not valid."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The file has no cards."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "The gift card balance is too low."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "The gift card could not be saved."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The header row needs the columns code and balance."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The order was saved but the card was not created. See the order notes."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "The page expired. Please try again."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "The product image could not be saved."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "The remaining balance is written off and the card stops working. This cannot be undone."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "The shop prints and ships the card. No email is sent and the order needs shipping."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "This gift card cannot be changed."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "This gift card code is not valid."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "This gift card has been cancelled."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "This gift card has expired."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "This gift card has no balance left."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "This gift card has not been activated yet. Ask the shop to activate it."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "This gift card is already in use on this order."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-store.php
+msgid "This gift card is in a different currency."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "This gift card link is not valid."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "To"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Upload it"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks-integration.php
+msgid "Use card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Use the code at checkout on %s."
+msgstr ""
+
+#: templates/emails/lafu-gift-card.php
+msgid "Use the code at checkout on %s. Whatever you do not spend stays on the card for next time."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Use this card as the product image"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Used"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Used by the Colour design."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Used on an order"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Used this month"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-settings.php
+msgid "Valid for (months)"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "Valid until"
+msgstr ""
+
+#: templates/emails/plain/lafu-gift-card.php
+msgid "Valid until %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "Valid until {date}"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-designs.php
+msgid "Warm"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "What customers can still spend"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-privacy.php
+msgid "When you buy a gift card for someone, we store the name and email address of the recipient, your name if you choose to show it, and your message, so that we can deliver the card and show who it is from. We keep the gift card code, its balance and its history for as long as the card can be used and as long as accounting law requires. The recipient's details are used only to deliver the card."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Who gets it"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Who is it for?"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "Will be emailed %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-account.php
+msgid "You have no gift cards yet."
+msgstr ""
+
+#: templates/emails/lafu-gift-card.php
+msgid "You received a gift card to %s."
+msgstr ""
+
+#: includes/class-lafu-gift-cards-email.php
+msgid "You received a {amount} gift card from {site_title}"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "Your brand colours"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-email.php
+msgid "Your gift card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-blocks-integration.php
+msgid "Your gift cards:"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-product.php
+msgid "Your name"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-redeem.php
+msgid "[Remove]"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-issuer.php
+msgid "a printed card"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "empty = no expiry"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "left of %s"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "optional"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-admin.php
+msgid "or drop it here"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "quick picks at the counter and for new products"
+msgstr ""
+
+#: includes/class-lafu-gift-cards-design-page.php
+msgid "{name} is the name and {date} the last day the card is valid."
+msgstr ""

@@ -1,0 +1,25 @@
+<wpml-config>
+	<custom-fields>
+		<custom-field action="copy">_lafu_gift_card</custom-field>
+		<custom-field action="copy">_lafu_gc_amounts</custom-field>
+		<custom-field action="copy">_lafu_gc_custom</custom-field>
+		<custom-field action="copy">_lafu_gc_min</custom-field>
+		<custom-field action="copy">_lafu_gc_max</custom-field>
+		<custom-field action="copy">_lafu_gc_physical</custom-field>
+		<custom-field action="copy">_lafu_gc_design</custom-field>
+		<custom-field action="copy">_lafu_gc_colour</custom-field>
+		<custom-field action="translate">_lafu_gc_label</custom-field>
+		<custom-field action="translate">_lafu_gc_shop</custom-field>
+		<custom-field action="translate">_lafu_gc_line</custom-field>
+	</custom-fields>
+	<admin-texts>
+		<key name="lafu_gift_cards_card_texts">
+			<key name="label" />
+			<key name="shop" />
+			<key name="line" />
+			<key name="for" />
+			<key name="from" />
+			<key name="until" />
+		</key>
+	</admin-texts>
+</wpml-config>

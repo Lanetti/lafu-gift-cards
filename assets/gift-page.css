@@ -1,0 +1,578 @@
+/* LAFU Gift Cards: the page the recipient opens from the gift card email. */
+
+@font-face {
+	font-family: "LAFU GC Manrope";
+	src: url("fonts/manrope.woff2") format("woff2");
+	font-weight: 400 800;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "LAFU GC Fraunces";
+	src: url("fonts/fraunces.woff2") format("woff2");
+	font-weight: 700;
+	font-display: swap;
+}
+
+.lafu-gp {
+	margin: 0;
+	min-height: 100vh;
+	background: #fbf7f2;
+	color: #1f1a24;
+	font-family: "LAFU GC Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.lafu-gp a {
+	color: inherit;
+}
+
+.lafu-gp-page {
+	min-height: 100vh;
+}
+
+/* Header */
+.lafu-gp-hero {
+	position: relative;
+	overflow: hidden;
+}
+
+.lafu-gp-bar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	max-width: 440px;
+	margin: 0 auto;
+	padding: 24px 24px 0;
+	box-sizing: border-box;
+}
+
+.lafu-gp-shop {
+	font-weight: 800;
+	letter-spacing: .02em;
+}
+
+.lafu-gp-bar-link {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.lafu-gp-greeting {
+	position: relative;
+	max-width: 440px;
+	margin: 0 auto;
+	padding: 40px 24px 0;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.lafu-gp-eyebrow {
+	margin: 0;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+	color: var(--gp-highlight);
+}
+
+.lafu-gp-greeting h1 {
+	margin: 12px 0 0;
+	font-family: "LAFU GC Fraunces", Georgia, serif;
+	font-size: clamp(32px, 9vw, 42px);
+	line-height: 1.1;
+	font-weight: 700;
+	overflow-wrap: anywhere;
+}
+
+.lafu-gp-intro {
+	margin: 14px 0 0;
+	font-size: 17px;
+	line-height: 1.5;
+	opacity: .9;
+}
+
+.lafu-gp-body {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	max-width: 440px;
+	margin: 0 auto;
+	padding: 0 20px 32px;
+	box-sizing: border-box;
+}
+
+.lafu-gp-card .lafu-gc-card {
+	max-width: none;
+	box-shadow: 0 24px 48px -20px rgba(40, 10, 60, .55);
+}
+
+.lafu-gp-panel {
+	margin: 0;
+	padding: 20px;
+	border-radius: 16px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(31, 26, 36, .06), 0 8px 24px -12px rgba(31, 26, 36, .18);
+}
+
+.lafu-gp-message blockquote {
+	margin: 0;
+	font-family: "LAFU GC Fraunces", Georgia, serif;
+	font-size: 20px;
+	line-height: 1.45;
+	color: #2a2230;
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+}
+
+.lafu-gp-message blockquote::before {
+	content: "\201C";
+}
+
+.lafu-gp-message blockquote::after {
+	content: "\201D";
+}
+
+.lafu-gp-message figcaption {
+	margin-top: 10px;
+	font-size: 14px;
+	color: #5f5668;
+}
+
+.lafu-gp-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.lafu-gp-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 52px;
+	padding: 0 18px;
+	border-radius: 14px;
+	font: inherit;
+	font-size: 16px;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.lafu-gp .lafu-gp-button--main {
+	border: 0;
+	background: #1f1a24;
+	color: #fff;
+}
+
+.lafu-gp-button--ghost {
+	min-height: 48px;
+	border: 1px solid #c9b6dc;
+	background: transparent;
+	color: #4a2c6b;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.lafu-gp-button:focus-visible {
+	outline: 3px solid var(--gp-accent);
+	outline-offset: 2px;
+}
+
+.lafu-gp-how {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.lafu-gp-how h2 {
+	margin: 0;
+	font-size: 16px;
+}
+
+.lafu-gp-how p {
+	display: flex;
+	gap: 12px;
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #4a4251;
+}
+
+.lafu-gp-how p span {
+	font-weight: 800;
+	color: #5b2a86;
+}
+
+.lafu-gp-balance {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 6px 12px;
+	padding-top: 10px;
+	border-top: 1px solid #efe8f3;
+	font-size: 14px;
+}
+
+.lafu-gp-balance span {
+	color: #5f5668;
+}
+
+.lafu-gp-status h1 {
+	margin: 0 0 6px;
+	font-size: 22px;
+}
+
+.lafu-gp-status p {
+	margin: 0;
+	color: #5f5668;
+}
+
+.lafu-gp-foot {
+	margin: 4px 0 0;
+	text-align: center;
+	font-size: 13px;
+	color: #6b6372;
+}
+
+/* A · Celebration: the greeting on the design colour, the card overlapping it. */
+.lafu-gp--celebration .lafu-gp-hero {
+	padding-bottom: 120px;
+	background: var(--gp-accent);
+	color: var(--gp-on-accent);
+}
+
+.lafu-gp--celebration .lafu-gp-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(circle at 12% 20%, #ffd166 0 3px, transparent 4px),
+		radial-gradient(circle at 88% 14%, #7ee0d4 0 4px, transparent 5px),
+		radial-gradient(circle at 22% 46%, #ff8fab 0 4px, transparent 5px),
+		radial-gradient(circle at 90% 44%, #ffd166 0 5px, transparent 6px),
+		radial-gradient(circle at 48% 10%, rgba(255, 255, 255, .7) 0 3px, transparent 4px),
+		radial-gradient(circle at 70% 70%, rgba(255, 255, 255, .55) 0 4px, transparent 5px),
+		radial-gradient(circle at 8% 78%, #ffd166 0 5px, transparent 6px),
+		radial-gradient(circle at 34% 72%, #7ee0d4 0 3px, transparent 4px);
+	pointer-events: none;
+}
+
+.lafu-gp--celebration .lafu-gp-body {
+	margin-top: -96px;
+}
+
+/* B · Card: a calm page, the card is the hero. */
+.lafu-gp--card {
+	background: #f3f1ee;
+}
+
+.lafu-gp--card .lafu-gp-bar {
+	padding-bottom: 8px;
+}
+
+.lafu-gp--card .lafu-gp-body {
+	padding-top: 12px;
+}
+
+.lafu-gp-intro--card {
+	margin: 0;
+	padding: 18px 20px;
+	border-radius: 16px;
+	background: #fff;
+	font-size: 16px;
+	opacity: 1;
+}
+
+.lafu-gp--card .lafu-gp-card {
+	padding: 6px 4px;
+}
+
+.lafu-gp--card .lafu-gp-card .lafu-gc-card {
+	transform: rotate(-2deg);
+}
+
+.lafu-gp--card .lafu-gp-button--main {
+	background: var(--gp-accent);
+	color: var(--gp-on-accent);
+}
+
+/* C · Letter: the card in an envelope, the message written like a letter. */
+.lafu-gp--letter {
+	background: #f6efe4;
+	color: #2b1d14;
+}
+
+.lafu-gp--letter .lafu-gp-shop {
+	font-family: "LAFU GC Fraunces", Georgia, serif;
+	font-size: 18px;
+	letter-spacing: 0;
+}
+
+.lafu-gp--letter .lafu-gp-body {
+	padding-top: 20px;
+	gap: 24px;
+}
+
+.lafu-gp-envelope {
+	position: relative;
+	padding: 0 18px 46px;
+}
+
+.lafu-gp-envelope::before {
+	content: "";
+	position: absolute;
+	inset: 34% 0 0;
+	border-radius: 6px 6px 16px 16px;
+	background: #e9d9c2;
+	box-shadow: 0 22px 36px -22px rgba(60, 35, 15, .55);
+}
+
+.lafu-gp-envelope .lafu-gp-card {
+	position: relative;
+	z-index: 1;
+}
+
+.lafu-gp-envelope .lafu-gp-card .lafu-gc-card {
+	transform: rotate(-2deg);
+}
+
+.lafu-gp-envelope__front {
+	position: absolute;
+	z-index: 2;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 74px;
+	border-radius: 0 0 16px 16px;
+	background: #e2cdb0;
+	clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+}
+
+.lafu-gp-envelope__seal {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	bottom: 18px;
+	width: 34px;
+	height: 34px;
+	margin-left: -17px;
+	border-radius: 50%;
+	background: var(--gp-accent);
+	box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .22), 0 2px 4px rgba(0, 0, 0, .2);
+}
+
+.lafu-gp-letter {
+	margin: 0;
+	padding: 26px 24px 24px;
+	border-radius: 4px;
+	background: #fffdf8;
+	box-shadow: 0 1px 0 #eadfce, 0 12px 26px -18px rgba(60, 35, 15, .45);
+	font-family: "LAFU GC Fraunces", Georgia, serif;
+	font-style: italic;
+}
+
+.lafu-gp-letter__to {
+	margin: 0 0 12px;
+	font-size: 22px;
+}
+
+.lafu-gp-letter blockquote {
+	margin: 0;
+	font-size: 18px;
+	line-height: 1.6;
+	color: #4a3424;
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+}
+
+.lafu-gp-letter figcaption {
+	margin-top: 16px;
+	font-size: 18px;
+	text-align: right;
+}
+
+.lafu-gp--letter .lafu-gp-button--main {
+	background: #2b1d14;
+}
+
+.lafu-gp--letter .lafu-gp-button--ghost {
+	border-color: #c9b49a;
+	color: #2b1d14;
+}
+
+.lafu-gp--letter .lafu-gp-panel:not(.lafu-gp-letter) {
+	background: transparent;
+	border: 1px dashed #c9b49a;
+	box-shadow: none;
+}
+
+.lafu-gp--letter .lafu-gp-how p span {
+	color: #8a4b2a;
+}
+
+.lafu-gp--motion .lafu-gp-envelope .lafu-gp-card {
+	animation: lafu-gp-slide .9s cubic-bezier(.2, .8, .25, 1) .2s both;
+}
+
+.lafu-gp--motion .lafu-gp-letter {
+	animation: lafu-gp-rise .6s ease-out .7s both;
+}
+
+@keyframes lafu-gp-slide {
+	from {
+		opacity: 0;
+		transform: translateY(42%);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* Entrance: pieces fall once, the card pops in. */
+.lafu-gp-burst {
+	position: fixed;
+	inset: 0;
+	z-index: 50;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.lafu-gp-piece {
+	position: absolute;
+	top: 0;
+	left: var(--x);
+	width: var(--s);
+	height: var(--s);
+	opacity: 0;
+	animation: lafu-gp-fall var(--t) cubic-bezier(.25, .6, .4, 1) var(--d) forwards;
+}
+
+.lafu-gp-piece--rect {
+	height: calc(var(--s) * .45);
+	border-radius: 2px;
+	background: currentColor;
+}
+
+.lafu-gp-piece--circle {
+	border-radius: 50%;
+	background: currentColor;
+}
+
+@keyframes lafu-gp-fall {
+	0% {
+		opacity: 1;
+		transform: translate3d(0, -12vh, 0) rotate(0deg);
+	}
+
+	85% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate3d(var(--w), 108vh, 0) rotate(var(--r));
+	}
+}
+
+.lafu-gp--motion .lafu-gp-card {
+	animation: lafu-gp-pop .7s cubic-bezier(.2, .9, .3, 1.2) .15s both;
+}
+
+.lafu-gp--motion .lafu-gp-greeting {
+	animation: lafu-gp-rise .6s ease-out both;
+}
+
+@keyframes lafu-gp-pop {
+	from {
+		opacity: 0;
+		transform: translateY(24px) scale(.94);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes lafu-gp-rise {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lafu-gp-burst {
+		display: none;
+	}
+
+	.lafu-gp--motion .lafu-gp-card,
+	.lafu-gp--motion .lafu-gp-greeting,
+	.lafu-gp--motion .lafu-gp-envelope .lafu-gp-card,
+	.lafu-gp--motion .lafu-gp-letter {
+		animation: none;
+	}
+}
+
+/* Print and PDF: the card, the message and how to use it on white. */
+@media print {
+	.lafu-gp,
+	.lafu-gp--card,
+	.lafu-gp--letter {
+		background: #fff;
+	}
+
+	.lafu-gp-envelope {
+		padding-bottom: 0;
+	}
+
+	.lafu-gp-envelope::before,
+	.lafu-gp-envelope__front,
+	.lafu-gp-envelope__seal {
+		display: none;
+	}
+
+	.lafu-gp-burst,
+	.lafu-gp-actions,
+	.lafu-gp-bar-link {
+		display: none !important;
+	}
+
+	.lafu-gp--celebration .lafu-gp-hero {
+		padding-bottom: 24px;
+		background: #fff;
+		color: #1f1a24;
+	}
+
+	.lafu-gp--celebration .lafu-gp-hero::before {
+		display: none;
+	}
+
+	.lafu-gp--celebration .lafu-gp-body {
+		margin-top: 0;
+	}
+
+	.lafu-gp-card .lafu-gc-card {
+		transform: none !important;
+		box-shadow: none;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.lafu-gp-panel {
+		box-shadow: none;
+		border: 1px solid #e6e0ea;
+	}
+}
