@@ -4,7 +4,7 @@ Tags: gift card, gift certificate, voucher, woocommerce, store credit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,11 @@ Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balanc
 The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License 1.1, licence files in assets/fonts). No fonts are loaded from other servers.
 
 == Changelog ==
+
+= 1.8.1 =
+* My Account: the Gift cards entry gets a gift icon in themes that give every entry an icon (Storefront, OceanWP, Blocksy, WoodMart).
+* The gift card form keeps its layout in every theme: no grey boxes or clipped headings, and themes that put the add to cart form in a row no longer squeeze it.
+* The card list in My Account stacks on phones in every theme.
 
 = 1.8.0 =
 * Designer: one colour picker for every design. Our ready designs take your colour too, the art stays, and the card and its tile change as you pick. Your brand colours are one-click picks.

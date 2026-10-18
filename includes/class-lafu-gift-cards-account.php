@@ -36,6 +36,35 @@ class Lafu_Gift_Cards_Account {
 		add_action( 'template_redirect', array( __CLASS__, 'handle_save' ) );
 		add_action( 'template_redirect', array( __CLASS__, 'print_page' ), 1 );
 		add_shortcode( 'lafu_gift_card_balance', array( __CLASS__, 'balance_shortcode' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'theme_icon' ) );
+	}
+
+	/**
+	 * A gift icon for the Gift cards entry in themes that give every My Account
+	 * entry an icon, so ours does not get the theme's generic one. Only for
+	 * those themes: elsewhere entries have no icons and neither does ours.
+	 */
+	public static function theme_icon() {
+		if ( ! function_exists( 'is_account_page' ) || ! is_account_page() ) {
+			return;
+		}
+		$gift  = 'url("data:image/svg+xml,' . rawurlencode( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>' ) . '")';
+		$mask  = 'background-color:currentColor;-webkit-mask:' . $gift . ' center/contain no-repeat;mask:' . $gift . ' center/contain no-repeat;';
+		$link  = '.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--gift-cards a';
+		$css   = array(
+			// Font Awesome 5 is already loaded by Storefront: its own gift glyph.
+			'storefront' => $link . '::before{content:"\f06b";}',
+			'oceanwp'    => $link . ':before{content:"";width:16px;height:16px;margin-top:3px;' . $mask . '}',
+			'blocksy'    => '.woocommerce-MyAccount-navigation-link--gift-cards a:before{content:"";height:16px;' . str_replace( 'center/contain', 'left center/16px 16px', $mask ) . '}',
+			'woodmart'   => '.wd-nav-my-acc>li.wd-my-acc-gift-cards>a .wd-nav-icon:before{content:"";width:1em;height:1em;' . $mask . '}',
+		);
+		$theme = get_template();
+		if ( ! isset( $css[ $theme ] ) ) {
+			return;
+		}
+		wp_register_style( 'lafu-gift-cards-account-icon', false, array(), LAFU_GIFT_CARDS_VERSION );
+		wp_enqueue_style( 'lafu-gift-cards-account-icon' );
+		wp_add_inline_style( 'lafu-gift-cards-account-icon', $css[ $theme ] );
 	}
 
 	/**

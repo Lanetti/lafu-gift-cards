@@ -9,17 +9,73 @@
 	display: none !important;
 }
 
-.lafu-gc-form fieldset {
+/* Themes style bare fieldsets and legends (grey boxes, legends pulled left,
+   floated or framed): the doubled class keeps ours plain in every theme. */
+.lafu-gc-form.lafu-gc-form fieldset {
 	border: 0;
 	margin: 0 0 1.25em;
 	padding: 0;
 	min-width: 0;
+	background: none;
+	box-shadow: none;
 }
 
-.lafu-gc-form legend {
-	font-weight: 600;
-	margin-bottom: .5em;
+.lafu-gc-form.lafu-gc-form legend {
+	float: none;
+	position: static;
+	width: auto;
+	margin: 0 0 .5em;
 	padding: 0;
+	border: 0;
+	background: none;
+	font-weight: 600;
+	transform: none;
+}
+
+/* Themes that lay out the add to cart form in a row (Neve and others): the
+   gift card fields take the full width, quantity and button go below. */
+form.cart:has(.lafu-gc-form) {
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+form.cart .lafu-gc-form {
+	flex: 1 0 100%;
+	width: 100%;
+	max-width: 100%;
+}
+
+/* The card list stacks on phones even where the theme has no responsive tables. */
+@media (max-width: 600px) {
+	.lafu-gc-account-table thead {
+		display: none;
+	}
+
+	.lafu-gc-account-table tr,
+	.lafu-gc-account-table td {
+		display: block;
+	}
+
+	.lafu-gc-account-table tr {
+		margin-bottom: 1em;
+	}
+
+	.lafu-gc-account-table td {
+		display: flex;
+		justify-content: space-between;
+		gap: 1em;
+		text-align: end;
+	}
+
+	.lafu-gc-account-table td::before {
+		content: attr(data-title);
+		font-weight: 600;
+		text-align: start;
+	}
+
+	.lafu-gc-account-table td:not([data-title])::before {
+		content: none;
+	}
 }
 
 .lafu-gc-form p {
