@@ -140,42 +140,25 @@
 	visibility: hidden;
 }
 
-.lafu-gc-card--amount .lafu-gc-card__amount {
-	position: absolute;
-	z-index: 1;
-	margin: 0;
+/* Top: right under the heading. Bottom: right above the names and code. */
+.lafu-gc-card--amount-top,
+.lafu-gc-card--amount-bottom {
+	justify-content: flex-start;
 }
 
-.lafu-gc-card--amount-left .lafu-gc-card__amount {
-	left: clamp(20px, 6.5%, 36px);
-}
-
-.lafu-gc-card--amount-right .lafu-gc-card__amount {
-	right: clamp(20px, 6.5%, 36px);
-	text-align: right;
+.lafu-gc-card--amount-top .lafu-gc-card__bottom,
+.lafu-gc-card--amount-bottom .lafu-gc-card__amount {
+	margin-top: auto;
 }
 
 .lafu-gc-card--amount-center .lafu-gc-card__amount {
-	left: 50%;
+	align-self: center;
 	text-align: center;
-	transform: translateX(-50%);
 }
 
-.lafu-gc-card--amount-top .lafu-gc-card__amount {
-	top: clamp(20px, 6.5%, 36px);
-}
-
-.lafu-gc-card--amount-middle .lafu-gc-card__amount {
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-.lafu-gc-card--amount-middle.lafu-gc-card--amount-center .lafu-gc-card__amount {
-	transform: translate(-50%, -50%);
-}
-
-.lafu-gc-card--amount-bottom .lafu-gc-card__amount {
-	bottom: 30%;
+.lafu-gc-card--amount-right .lafu-gc-card__amount {
+	align-self: flex-end;
+	text-align: right;
 }
 
 .lafu-gc-card--amount-center .lafu-gc-card__bottom {
@@ -186,4 +169,13 @@
 .lafu-gc-card--amount-right .lafu-gc-card__bottom {
 	flex-direction: row-reverse;
 	text-align: right;
+}
+
+/* Amount dragged to its own place on the card (left/top set inline, in percent). */
+.lafu-gc-card--amount-free .lafu-gc-card__amount {
+	position: absolute;
+	z-index: 1;
+	margin: 0;
+	white-space: nowrap;
+	transform: translate(-50%, -50%);
 }

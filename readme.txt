@@ -4,7 +4,7 @@ Tags: gift card, gift certificate, voucher, woocommerce, store credit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.9.0
+Stable tag: 1.10.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,10 @@ Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balanc
 The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License 1.1, licence files in assets/fonts). No fonts are loaded from other servers.
 
 == Changelog ==
+
+= 1.10.0 =
+* Card designs can place the amount anywhere and choose its size, font and colour (used by Pro photo designs).
+* Card designs with the amount at the top or bottom place it right under the heading or right above the names and code, so it never covers them.
 
 = 1.9.0 =
 * New: a short tour of the Gift cards pages on the first visit (Designer, Counter, Cards, Settings). Skip it any time; Take the tour plays it again.

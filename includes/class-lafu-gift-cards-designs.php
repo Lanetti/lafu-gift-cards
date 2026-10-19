@@ -31,6 +31,19 @@ class Lafu_Gift_Cards_Designs {
 	const AMOUNT_SPOTS = array( 'top-left', 'top-center', 'top-right', 'middle-left', 'middle-center', 'middle-right', 'bottom-left', 'bottom-center', 'bottom-right' );
 
 	/**
+	 * Fonts a design can use for the amount: key => CSS font stack. Fonts
+	 * every device has, so nothing extra loads.
+	 */
+	const AMOUNT_FONTS = array(
+		'shop'    => 'inherit',
+		'sans'    => 'system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
+		'serif'   => 'Georgia,"Times New Roman",Times,serif',
+		'slab'    => 'Rockwell,"Roboto Slab","Courier New",serif',
+		'rounded' => '"Arial Rounded MT Bold","Varela Round","Trebuchet MS",sans-serif',
+		'mono'    => 'Menlo,Consolas,"Courier New",monospace',
+	);
+
+	/**
 	 * Default card colours, used until the shop saves its own.
 	 *
 	 * @return array Hex colours.
@@ -219,17 +232,56 @@ class Lafu_Gift_Cards_Designs {
 	 * where the amount goes. Designs leave both out for the classic card.
 	 *
 	 * @param array $design Design array.
-	 * @return array heading (bool), amount (spot), vertical, horizontal.
+	 * @return array heading (bool), amount (spot), vertical, horizontal, x and y (percent of the card, or null),
+	 *               size (percent of the card width, or null), font (key or ""), colour (hex or "").
 	 */
 	public static function layout( array $design ) {
-		$spot = isset( $design['amount'] ) && in_array( $design['amount'], self::AMOUNT_SPOTS, true ) ? $design['amount'] : 'middle-left';
-		$part = explode( '-', $spot );
+		$spot    = isset( $design['amount'] ) && in_array( $design['amount'], self::AMOUNT_SPOTS, true ) ? $design['amount'] : 'middle-left';
+		$part    = explode( '-', $spot );
+		$percent = static function ( $key, $min, $max ) use ( $design ) {
+			return isset( $design[ $key ] ) && is_numeric( $design[ $key ] ) ? max( $min, min( $max, round( (float) $design[ $key ], 2 ) ) ) : null;
+		};
+		$x       = $percent( 'amount_x', 0, 100 );
+		$y       = $percent( 'amount_y', 0, 100 );
+		$font    = isset( $design['amount_font'] ) && isset( self::AMOUNT_FONTS[ $design['amount_font'] ] ) ? $design['amount_font'] : '';
+		$colour  = isset( $design['amount_colour'] ) ? (string) sanitize_hex_color( (string) $design['amount_colour'] ) : '';
 		return array(
 			'heading'    => ! isset( $design['heading'] ) || false !== $design['heading'],
 			'amount'     => $spot,
 			'vertical'   => $part[0],
 			'horizontal' => $part[1],
+			'x'          => null === $y ? null : $x,
+			'y'          => null === $x ? null : $y,
+			'size'       => $percent( 'amount_size', 4, 20 ),
+			'font'       => $font,
+			'colour'     => $colour,
 		);
+	}
+
+	/**
+	 * CSS for the amount of a design: size, font and colour, and on the web
+	 * its place when dragged. The size is a share of the card width, so it
+	 * scales with the card (an email uses a 520 pixel card).
+	 *
+	 * @param array  $layout  From layout().
+	 * @param string $context web or email.
+	 * @return string CSS declarations.
+	 */
+	public static function amount_css( array $layout, $context = 'web' ) {
+		$css = '';
+		if ( null !== $layout['size'] ) {
+			$css .= 'email' === $context ? 'font-size:' . round( $layout['size'] * 5.2 ) . 'px;' : 'font-size:' . $layout['size'] . 'cqw;';
+		}
+		if ( '' !== $layout['font'] && 'shop' !== $layout['font'] ) {
+			$css .= 'font-family:' . self::AMOUNT_FONTS[ $layout['font'] ] . ';';
+		}
+		if ( '' !== $layout['colour'] ) {
+			$css .= 'color:' . $layout['colour'] . ';';
+		}
+		if ( 'web' === $context && null !== $layout['x'] ) {
+			$css .= 'left:' . $layout['x'] . '%;top:' . $layout['y'] . '%;';
+		}
+		return $css;
 	}
 
 	/**
@@ -476,7 +528,17 @@ class Lafu_Gift_Cards_Designs {
 			'bottom' => $h - $pad - 70,
 		);
 		$anchor  = $anchors[ $layout['horizontal'] ];
-		$svg    .= '<text x="' . $anchor[0] . '" y="' . $base[ $layout['vertical'] ] . '" text-anchor="' . $anchor[1] . '" fill="' . $text . '" font-family="' . $font . '" font-size="140" font-weight="800" letter-spacing="-1">' . $esc( $texts['amount'] ) . '</text>';
+		$size    = null === $layout['size'] ? 140 : round( $w * $layout['size'] / 100 );
+		$ax      = $anchor[0];
+		$ay      = $base[ $layout['vertical'] ];
+		if ( null !== $layout['x'] ) {
+			$anchor = array( 0, 'middle' );
+			$ax     = round( $w * $layout['x'] / 100 );
+			$ay     = round( ( $h * $layout['y'] / 100 ) + ( $size * 0.35 ) );
+		}
+		$a_font = '' !== $layout['font'] && 'shop' !== $layout['font'] ? self::AMOUNT_FONTS[ $layout['font'] ] : $font;
+		$a_fill = '' !== $layout['colour'] ? $layout['colour'] : $text;
+		$svg   .= '<text x="' . $ax . '" y="' . $ay . '" text-anchor="' . $anchor[1] . '" fill="' . $a_fill . '" font-family="' . $esc( $a_font ) . '" font-size="' . $size . '" font-weight="800" letter-spacing="-1">' . $esc( $texts['amount'] ) . '</text>';
 		return $svg . '</svg>';
 	}
 
@@ -559,7 +621,7 @@ class Lafu_Gift_Cards_Designs {
 					</tr>
 				<?php endif; ?>
 				<tr>
-					<td align="<?php echo esc_attr( $layout['horizontal'] ); ?>" style="color:<?php echo esc_attr( $text ); ?>;font-size:38px;font-weight:800;line-height:1.1;padding:0 0 18px;text-align:<?php echo esc_attr( $layout['horizontal'] ); ?>;"><?php echo wp_kses_post( $amount ); ?></td>
+					<td align="<?php echo esc_attr( $layout['horizontal'] ); ?>" style="<?php echo esc_attr( 'color:' . $text . ';font-size:38px;font-weight:800;line-height:1.1;padding:0 0 18px;text-align:' . $layout['horizontal'] . ';' . self::amount_css( $layout, 'email' ) ); ?>"><?php echo wp_kses_post( $amount ); ?></td>
 				</tr>
 				<tr>
 					<td style="padding:0;">
@@ -601,13 +663,13 @@ class Lafu_Gift_Cards_Designs {
 
 		ob_start();
 		?>
-		<div class="<?php echo esc_attr( 'lafu-gc-card' . ( $layout['heading'] ? '' : ' lafu-gc-card--no-heading' ) . ( 'middle-left' === $layout['amount'] ? '' : ' lafu-gc-card--amount lafu-gc-card--amount-' . $layout['vertical'] . ' lafu-gc-card--amount-' . $layout['horizontal'] ) ); ?>" style="<?php echo esc_attr( $box ); ?>">
+		<div class="<?php echo esc_attr( 'lafu-gc-card' . ( $layout['heading'] ? '' : ' lafu-gc-card--no-heading' ) . ( null !== $layout['x'] ? ' lafu-gc-card--amount-free' : ( 'middle-left' === $layout['amount'] ? '' : ' lafu-gc-card--amount lafu-gc-card--amount-' . $layout['vertical'] . ' lafu-gc-card--amount-' . $layout['horizontal'] ) ) ); ?>" style="<?php echo esc_attr( $box ); ?>">
 			<div class="lafu-gc-card__top">
 				<span class="lafu-gc-card__label" style="color:<?php echo esc_attr( $accent ); ?>"><?php echo esc_html( $texts['label'] ); ?></span>
 				<span class="lafu-gc-card__shop"><?php echo esc_html( $shop ); ?></span>
 				<span class="lafu-gc-card__line" data-lafu-gc-preview-line><?php echo esc_html( $line ); ?></span>
 			</div>
-			<div class="lafu-gc-card__amount" data-lafu-gc-preview-amount><?php echo wp_kses_post( $amount ); ?></div>
+			<div class="lafu-gc-card__amount" data-lafu-gc-preview-amount<?php echo '' !== self::amount_css( $layout ) ? ' style="' . esc_attr( self::amount_css( $layout ) ) . '"' : ''; ?>><?php echo wp_kses_post( $amount ); ?></div>
 			<div class="lafu-gc-card__bottom">
 				<div class="lafu-gc-card__meta">
 					<div class="lafu-gc-card__people" data-lafu-gc-preview-people><?php echo esc_html( trim( $to . ( $to && $from ? ' · ' : '' ) . $from ) ); ?></div>
