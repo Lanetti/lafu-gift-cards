@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'Schritt %1$d von %2$d',
 		'Open the picture guide'                          => 'Bildanleitung öffnen',
 		'Take the tour'                                   => 'Tour starten',
+		'Pro features'                                    => 'Pro-Funktionen',
+		'More with LAFU Gift Cards Pro'                   => 'Mehr mit LAFU Gift Cards Pro',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Eine Kasse für die Theke, gedruckte Kartenserien, Guthaben im Shop, Aufladen, Gruppengeschenke, Foto- und Markendesigns, Bonuskarten, Berichte und mehr.',
+		'See what Pro adds'                               => 'Sehen, was Pro bietet',
+		'Hide'                                            => 'Ausblenden',
 	),
 );

@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'Trin %1$d af %2$d',
 		'Open the picture guide'                          => 'Åbn billedguiden',
 		'Take the tour'                                   => 'Tag rundvisningen',
+		'Pro features'                                    => 'Pro-funktioner',
+		'More with LAFU Gift Cards Pro'                   => 'Mere med LAFU Gift Cards Pro',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'En kasse til disken, trykte kortserier, butikskredit, optankning, gruppegaver, foto- og branddesigns, bonuskort, rapporter og mere.',
+		'See what Pro adds'                               => 'Se hvad Pro giver',
+		'Hide'                                            => 'Skjul',
 	),
 );

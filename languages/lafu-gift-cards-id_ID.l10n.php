@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'Langkah %1$d dari %2$d',
 		'Open the picture guide'                          => 'Buka panduan bergambar',
 		'Take the tour'                                   => 'Ikuti tur',
+		'Pro features'                                    => 'Fitur Pro',
+		'More with LAFU Gift Cards Pro'                   => 'Lebih banyak dengan LAFU Gift Cards Pro',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Kasir untuk konter, kartu cetak dalam jumlah banyak, kredit toko, isi ulang, hadiah grup, desain foto dan merek, kartu bonus, laporan, dan lainnya.',
+		'See what Pro adds'                               => 'Lihat apa yang ditambahkan Pro',
+		'Hide'                                            => 'Sembunyikan',
 	),
 );

@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'ステップ %1$d / %2$d',
 		'Open the picture guide'                          => '画像ガイドを開く',
 		'Take the tour'                                   => 'ツアーを見る',
+		'Pro features'                                    => 'Pro の機能',
+		'More with LAFU Gift Cards Pro'                   => 'LAFU Gift Cards Pro でさらに',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => '店頭用のレジ、印刷カードの一括作成、ストアクレジット、チャージ、グループギフト、写真・ブランドデザイン、ボーナスカード、レポートなど。',
+		'See what Pro adds'                               => 'Pro で増える機能を見る',
+		'Hide'                                            => '非表示',
 	),
 );

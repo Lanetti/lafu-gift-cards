@@ -142,6 +142,7 @@ class Lafu_Gift_Cards_Admin {
 			self::render_import();
 		} else {
 			self::render_list();
+			Lafu_Gift_Cards_Pro_Info::card();
 		}
 		echo '</div>';
 	}

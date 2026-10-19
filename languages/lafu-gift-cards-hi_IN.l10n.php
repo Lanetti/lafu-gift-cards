@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'चरण %1$d / %2$d',
 		'Open the picture guide'                          => 'चित्रों वाली गाइड खोलें',
 		'Take the tour'                                   => 'टूर देखें',
+		'Pro features'                                    => 'Pro सुविधाएँ',
+		'More with LAFU Gift Cards Pro'                   => 'LAFU Gift Cards Pro के साथ और भी',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'काउंटर के लिए कैश, छपे कार्डों के बैच, स्टोर क्रेडिट, टॉप-अप, ग्रुप गिफ़्ट, फ़ोटो और ब्रांड डिज़ाइन, बोनस कार्ड, रिपोर्ट और भी बहुत कुछ।',
+		'See what Pro adds'                               => 'देखें Pro क्या जोड़ता है',
+		'Hide'                                            => 'छिपाएँ',
 	),
 );

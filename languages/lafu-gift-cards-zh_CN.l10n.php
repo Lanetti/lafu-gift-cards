@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => '第 %1$d 步，共 %2$d 步',
 		'Open the picture guide'                          => '打开图文指南',
 		'Take the tour'                                   => '开始导览',
+		'Pro features'                                    => 'Pro 功能',
+		'More with LAFU Gift Cards Pro'                   => 'LAFU Gift Cards Pro 带来更多',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => '柜台收银、批量打印卡片、店铺余额、充值、团体礼物、照片和品牌设计、奖励卡、报表等。',
+		'See what Pro adds'                               => '了解 Pro 增加的功能',
+		'Hide'                                            => '隐藏',
 	),
 );

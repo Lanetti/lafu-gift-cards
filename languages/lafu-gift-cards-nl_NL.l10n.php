@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'Stap %1$d van %2$d',
 		'Open the picture guide'                          => 'Beeldgids openen',
 		'Take the tour'                                   => 'Rondleiding starten',
+		'Pro features'                                    => 'Pro-functies',
+		'More with LAFU Gift Cards Pro'                   => 'Meer met LAFU Gift Cards Pro',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Een kassa voor de balie, gedrukte kaartenreeksen, winkeltegoed, opwaarderen, groepscadeaus, foto- en merkontwerpen, bonuskaarten, rapporten en meer.',
+		'See what Pro adds'                               => 'Bekijk wat Pro toevoegt',
+		'Hide'                                            => 'Verbergen',
 	),
 );

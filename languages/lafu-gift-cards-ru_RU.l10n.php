@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'Шаг %1$d из %2$d',
 		'Open the picture guide'                          => 'Открыть руководство в картинках',
 		'Take the tour'                                   => 'Пройти обзор',
+		'Pro features'                                    => 'Функции Pro',
+		'More with LAFU Gift Cards Pro'                   => 'Больше с LAFU Gift Cards Pro',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Касса для прилавка, партии печатных карт, кредит в магазине, пополнение, групповые подарки, дизайны с фото и брендом, бонусные карты, отчёты и многое другое.',
+		'See what Pro adds'                               => 'Что добавляет Pro',
+		'Hide'                                            => 'Скрыть',
 	),
 );

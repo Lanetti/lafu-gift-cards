@@ -1939,3 +1939,33 @@
 	cursor: pointer;
 }
 
+
+/* "More with Pro" card at the bottom of the Gift cards page (free only, can be hidden). */
+.lafu-gc-pro-card {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px 24px;
+	margin: 24px 0 8px;
+	padding: 16px 20px;
+	border: 1px solid #e4e4e7;
+	border-radius: 12px;
+	background: #fff;
+}
+
+.lafu-gc-pro-card h2 {
+	margin: 0 0 4px;
+	font-size: 15px;
+}
+
+.lafu-gc-pro-card p {
+	margin: 0;
+	color: #52525b;
+}
+
+.lafu-gc-pro-card__actions {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}

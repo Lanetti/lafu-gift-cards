@@ -4,7 +4,7 @@ Tags: gift card, gift certificate, voucher, woocommerce, store credit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.10.1
+Stable tag: 1.10.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,10 @@ Everything below is free, with no account, licence key or upsell screens.
 * Orders paid with gift cards carry the meta _lafu_gc_redemptions (card, masked code, amount), so accounting tools can book them as a payment.
 * Email templates can be overridden in your theme like any WooCommerce email.
 
+= LAFU Gift Cards Pro =
+
+Everything above is free and stays free. For shops that want more, the separate [LAFU Gift Cards Pro](https://www.lanetti.fi/products/gift-cards) add-on adds a till for the counter with QR scanning, printed card batches, bulk orders for companies, store credit from refunds, top-ups, group gifts, buyer photo cards, illustrated occasion designs, photo and brand designs (drag the amount anywhere, own font and colour), text message and WhatsApp delivery, bonus cards, limits by category or product, expiry reminders, reports, a REST API and webhooks.
+
 == Installation ==
 
 1. Install and activate WooCommerce and LAFU Gift Cards.
@@ -107,6 +111,9 @@ Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balanc
 The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License 1.1, licence files in assets/fonts). No fonts are loaded from other servers.
 
 == Changelog ==
+
+= 1.10.2 =
+* A "Pro features" link on the Plugins screen and a small card at the bottom of the Gift cards page that says what the Pro add-on adds. The card can be hidden, and neither shows once Pro is active.
 
 = 1.10.1 =
 * Photo cards stay visible with image lazy-load plugins (EWWW, Jetpack, WP Rocket, LiteSpeed, Smush, a3 Lazy Load): the card opts out of lazy loading.

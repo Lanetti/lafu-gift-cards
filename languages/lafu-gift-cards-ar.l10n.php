@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'الخطوة %1$d من %2$d',
 		'Open the picture guide'                          => 'افتح الدليل المصوّر',
 		'Take the tour'                                   => 'ابدأ الجولة',
+		'Pro features'                                    => 'ميزات Pro',
+		'More with LAFU Gift Cards Pro'                   => 'المزيد مع LAFU Gift Cards Pro',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'صندوق دفع للمتجر، دفعات بطاقات مطبوعة، رصيد المتجر، إعادة الشحن، الهدايا الجماعية، تصاميم بالصور والعلامة التجارية، بطاقات المكافأة، التقارير والمزيد.',
+		'See what Pro adds'                               => 'اطّلع على ما يضيفه Pro',
+		'Hide'                                            => 'إخفاء',
 	),
 );

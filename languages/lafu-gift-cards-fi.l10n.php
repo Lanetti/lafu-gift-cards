@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'Vaihe %1$d / %2$d',
 		'Open the picture guide'                          => 'Avaa kuvaopas',
 		'Take the tour'                                   => 'Katso esittely',
+		'Pro features'                                    => 'Pro-ominaisuudet',
+		'More with LAFU Gift Cards Pro'                   => 'Enemmän LAFU Gift Cards Prolla',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Kassa myymälään, tulostettavat korttierät, myymälähyvitys, saldon lisääminen, yhteislahjat, kuva- ja brändiulkoasut, bonuskortit, raportit ja paljon muuta.',
+		'See what Pro adds'                               => 'Katso mitä Pro tuo',
+		'Hide'                                            => 'Piilota',
 	),
 );

@@ -366,5 +366,10 @@ return array(
 		'Step %1$d of %2$d'                               => 'Adım %1$d / %2$d',
 		'Open the picture guide'                          => 'Resimli rehberi aç',
 		'Take the tour'                                   => 'Turu başlat',
+		'Pro features'                                    => 'Pro özellikleri',
+		'More with LAFU Gift Cards Pro'                   => 'LAFU Gift Cards Pro ile daha fazlası',
+		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Tezgah için kasa, basılı kart partileri, mağaza kredisi, bakiye yükleme, grup hediyeleri, fotoğraf ve marka tasarımları, bonus kartlar, raporlar ve daha fazlası.',
+		'See what Pro adds'                               => 'Pro\'nun neler kattığını görün',
+		'Hide'                                            => 'Gizle',
 	),
 );
