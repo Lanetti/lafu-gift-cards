@@ -663,7 +663,8 @@ class Lafu_Gift_Cards_Designs {
 
 		ob_start();
 		?>
-		<div class="<?php echo esc_attr( 'lafu-gc-card' . ( $layout['heading'] ? '' : ' lafu-gc-card--no-heading' ) . ( null !== $layout['x'] ? ' lafu-gc-card--amount-free' : ( 'middle-left' === $layout['amount'] ? '' : ' lafu-gc-card--amount lafu-gc-card--amount-' . $layout['vertical'] . ' lafu-gc-card--amount-' . $layout['horizontal'] ) ) ); ?>" style="<?php echo esc_attr( $box ); ?>">
+		<?php // skip-lazy and data-no-lazy: lazy-load plugins (EWWW, Jetpack, WP Rocket, LiteSpeed, Smush, a3) would pull the photo out of the layered background and leave a blank card. ?>
+		<div data-no-lazy="1" data-skip-lazy="1" class="<?php echo esc_attr( 'lafu-gc-card skip-lazy no-lazyload a3-notlazy' . ( $layout['heading'] ? '' : ' lafu-gc-card--no-heading' ) . ( null !== $layout['x'] ? ' lafu-gc-card--amount-free' : ( 'middle-left' === $layout['amount'] ? '' : ' lafu-gc-card--amount lafu-gc-card--amount-' . $layout['vertical'] . ' lafu-gc-card--amount-' . $layout['horizontal'] ) ) ); ?>" style="<?php echo esc_attr( $box ); ?>">
 			<div class="lafu-gc-card__top">
 				<span class="lafu-gc-card__label" style="color:<?php echo esc_attr( $accent ); ?>"><?php echo esc_html( $texts['label'] ); ?></span>
 				<span class="lafu-gc-card__shop"><?php echo esc_html( $shop ); ?></span>
