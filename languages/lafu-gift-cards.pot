@@ -807,7 +807,7 @@ msgid "Send email again"
 msgstr ""
 
 #: includes/class-lafu-gift-cards-product.php
-msgid "Send it to someone else"
+msgid "Email it to someone else"
 msgstr ""
 
 #: includes/class-lafu-gift-cards-product.php

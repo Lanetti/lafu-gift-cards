@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'Muu summa',
 		'Amount (%1$s to %2$s)'                           => 'Summa (vähintään %1$s, enintään %2$s)',
 		'Who is it for?'                                  => 'Kenelle kortti on?',
-		'Send it to someone else'                         => 'Lähetä se jollekulle toiselle',
+		'Email it to someone else'                        => 'Lähetä sähköpostilla toiselle',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'Useita saajia? Erota osoitteet pilkuilla. Jokainen saa oman korttinsa.',
 		'Your name'                                       => 'Nimesi',
 		'Send anonymously'                                => 'Lähetä nimettömänä',

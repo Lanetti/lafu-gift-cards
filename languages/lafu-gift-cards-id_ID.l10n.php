@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'Nominal lain',
 		'Amount (%1$s to %2$s)'                           => 'Nominal (%1$s sampai %2$s)',
 		'Who is it for?'                                  => 'Untuk siapa?',
-		'Send it to someone else'                         => 'Kirim ke orang lain',
+		'Email it to someone else'                        => 'Kirim lewat email ke orang lain',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'Beberapa orang? Pisahkan alamat dengan koma. Masing-masing mendapat kartunya sendiri.',
 		'Your name'                                       => 'Nama Anda',
 		'Send anonymously'                                => 'Kirim secara anonim',

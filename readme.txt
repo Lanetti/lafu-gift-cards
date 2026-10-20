@@ -4,7 +4,7 @@ Tags: gift card, gift certificate, voucher, woocommerce, store credit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.12.0
+Stable tag: 1.12.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -103,13 +103,16 @@ Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balanc
 4. One card: QR code, balance left, details and the full history of where the money went.
 5. Selling a card at the till, with a live preview. It is saved as a normal paid order.
 6. The gift card email, in the shop's own WooCommerce email style.
-7. The printable card with its QR code.
+7. The gift card page the email opens: the card with its QR code, a PDF to print and how to use it.
 
 == Credits ==
 
 The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License 1.1, licence files in assets/fonts). No fonts are loaded from other servers.
 
 == Changelog ==
+
+= 1.12.1 =
+* Product page: the gift option now says Email it to someone else, so buyers know the card goes by email.
 
 = 1.12.0 =
 * The cart and order show Delivery: Printed card for printed cards, and no longer show the colour as a code.

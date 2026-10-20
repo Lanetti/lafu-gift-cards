@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'अन्य राशि',
 		'Amount (%1$s to %2$s)'                           => 'राशि (%1$s से %2$s)',
 		'Who is it for?'                                  => 'यह किसके लिए है?',
-		'Send it to someone else'                         => 'किसी और को भेजें',
+		'Email it to someone else'                        => 'किसी और को ईमेल से भेजें',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'कई लोग? पते अल्पविराम से अलग करें। हर किसी को अपना कार्ड मिलता है।',
 		'Your name'                                       => 'आपका नाम',
 		'Send anonymously'                                => 'बिना नाम भेजें',

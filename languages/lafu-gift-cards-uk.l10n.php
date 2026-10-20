@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'Інша сума',
 		'Amount (%1$s to %2$s)'                           => 'Сума (від %1$s до %2$s)',
 		'Who is it for?'                                  => 'Для кого?',
-		'Send it to someone else'                         => 'Надіслати іншій людині',
+		'Email it to someone else'                        => 'Надіслати email іншій людині',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'Кілька людей? Розділіть адреси комами. Кожен отримає свою картку.',
 		'Your name'                                       => 'Ваше ім’я',
 		'Send anonymously'                                => 'Надіслати анонімно',

@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'Autre montant',
 		'Amount (%1$s to %2$s)'                           => 'Montant (%1$s à %2$s)',
 		'Who is it for?'                                  => 'Pour qui est-ce ?',
-		'Send it to someone else'                         => 'L\'envoyer à quelqu\'un d\'autre',
+		'Email it to someone else'                        => 'L\'envoyer par e-mail à quelqu\'un d\'autre',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'Plusieurs personnes ? Séparez les adresses par des virgules. Chacune reçoit sa propre carte.',
 		'Your name'                                       => 'Votre nom',
 		'Send anonymously'                                => 'Envoyer sans nom',

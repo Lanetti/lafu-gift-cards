@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'Başka tutar',
 		'Amount (%1$s to %2$s)'                           => 'Tutar (%1$s – %2$s)',
 		'Who is it for?'                                  => 'Kim için?',
-		'Send it to someone else'                         => 'Başka birine gönder',
+		'Email it to someone else'                        => 'Başka birine e-postayla gönder',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'Birden fazla kişi mi? Adresleri virgülle ayırın. Her biri kendi kartını alır.',
 		'Your name'                                       => 'Adınız',
 		'Send anonymously'                                => 'Anonim gönder',

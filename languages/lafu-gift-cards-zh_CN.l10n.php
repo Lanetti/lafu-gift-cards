@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => '其他金额',
 		'Amount (%1$s to %2$s)'                           => '金额（%1$s 至 %2$s）',
 		'Who is it for?'                                  => '送给谁？',
-		'Send it to someone else'                         => '送给别人',
+		'Email it to someone else'                        => '通过电子邮件送给别人',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => '要送给多人？请用逗号分隔邮箱。每人会收到一张自己的礼品卡。',
 		'Your name'                                       => '您的姓名',
 		'Send anonymously'                                => '匿名赠送',

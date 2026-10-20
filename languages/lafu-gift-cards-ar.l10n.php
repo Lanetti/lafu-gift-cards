@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'مبلغ آخر',
 		'Amount (%1$s to %2$s)'                           => 'المبلغ (%1$s إلى %2$s)',
 		'Who is it for?'                                  => 'لمن هي؟',
-		'Send it to someone else'                         => 'أرسلها إلى شخص آخر',
+		'Email it to someone else'                        => 'أرسلها بالبريد الإلكتروني إلى شخص آخر',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'عدة أشخاص؟ افصل العناوين بفواصل. يحصل كل شخص على بطاقته.',
 		'Your name'                                       => 'اسمك',
 		'Send anonymously'                                => 'أرسل دون اسم',

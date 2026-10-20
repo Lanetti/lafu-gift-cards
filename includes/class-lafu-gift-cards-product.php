@@ -561,7 +561,7 @@ class Lafu_Gift_Cards_Product {
 				?>
 				<?php if ( ! $options['physical'] ) : ?>
 					<p>
-						<label><input type="checkbox" name="lafu_gc_gift" value="1" data-lafu-gc-gift <?php checked( $posted['gift'] ); ?>> <?php esc_html_e( 'Send it to someone else', 'lafu-gift-cards' ); ?></label>
+						<label><input type="checkbox" name="lafu_gc_gift" value="1" data-lafu-gc-gift <?php checked( $posted['gift'] ); ?>> <?php esc_html_e( 'Email it to someone else', 'lafu-gift-cards' ); ?></label>
 					</p>
 				<?php endif; ?>
 				<div class="lafu-gc-gift-fields" <?php echo $options['physical'] ? '' : 'data-lafu-gc-gift-fields'; ?>>

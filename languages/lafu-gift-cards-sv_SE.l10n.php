@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'Annat belopp',
 		'Amount (%1$s to %2$s)'                           => 'Belopp (minst %1$s, högst %2$s)',
 		'Who is it for?'                                  => 'Vem är kortet till?',
-		'Send it to someone else'                         => 'Skicka det till någon annan',
+		'Email it to someone else'                        => 'Mejla det till någon annan',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'Flera mottagare? Skilj adresserna åt med kommatecken. Var och en får ett eget kort.',
 		'Your name'                                       => 'Ditt namn',
 		'Send anonymously'                                => 'Skicka anonymt',

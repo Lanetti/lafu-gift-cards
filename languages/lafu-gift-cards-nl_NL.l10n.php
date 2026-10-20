@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'Ander bedrag',
 		'Amount (%1$s to %2$s)'                           => 'Bedrag (%1$s tot %2$s)',
 		'Who is it for?'                                  => 'Voor wie is hij?',
-		'Send it to someone else'                         => 'Stuur hem naar iemand anders',
+		'Email it to someone else'                        => 'Mail hem naar iemand anders',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => 'Meerdere mensen? Scheid de adressen met komma\'s. Iedereen krijgt een eigen kaart.',
 		'Your name'                                       => 'Je naam',
 		'Send anonymously'                                => 'Anoniem versturen',

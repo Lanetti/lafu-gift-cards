@@ -202,7 +202,7 @@ return array(
 		'Other amount'                                    => 'その他の金額',
 		'Amount (%1$s to %2$s)'                           => '金額（%1$s から %2$s）',
 		'Who is it for?'                                  => 'どなたへの贈り物ですか？',
-		'Send it to someone else'                         => '別の人に送る',
+		'Email it to someone else'                        => '別の人にメールで送る',
 		'Several people? Separate the addresses with commas. Each gets their own card.' => '複数の人に送りますか？アドレスをカンマで区切ってください。それぞれ自分のカードを受け取ります。',
 		'Your name'                                       => 'あなたのお名前',
 		'Send anonymously'                                => '匿名で送る',
