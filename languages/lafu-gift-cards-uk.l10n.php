@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Каса для прилавка, партії друкованих карток, кредит у магазині, поповнення, групові подарунки, дизайни з фото та брендом, бонусні картки, звіти та інше.',
 		'See what Pro adds'                               => 'Що додає Pro',
 		'Hide'                                            => 'Сховати',
+		'Sell your first gift card'                       => 'Продайте свою першу подарункову картку',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Додайте товар-подарункову картку й виберіть на його вкладці «Подарункова картка» готовий дизайн і свій колір. Кожна продана картка з\'явиться тут: шукайте за кодом, іменем або e-mail.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Кожен товар-подарункова картка вибирає на вкладці «Подарункова картка» готовий дизайн і його колір; там же задаються суми й доставка.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Порожні поля беруть назву магазину й тексти картки мовою магазину.',
 	),
 );

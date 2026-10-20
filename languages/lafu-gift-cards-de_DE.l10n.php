@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Eine Kasse für die Theke, gedruckte Kartenserien, Guthaben im Shop, Aufladen, Gruppengeschenke, Foto- und Markendesigns, Bonuskarten, Berichte und mehr.',
 		'See what Pro adds'                               => 'Sehen, was Pro bietet',
 		'Hide'                                            => 'Ausblenden',
+		'Sell your first gift card'                       => 'Verkaufen Sie Ihre erste Geschenkkarte',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Legen Sie ein Geschenkkarten-Produkt an und wählen Sie auf seinem Tab Geschenkkarte ein fertiges Design und Ihre Farbe. Jede verkaufte Karte erscheint hier: Suche nach Code, Name oder E-Mail.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Jedes Geschenkkarten-Produkt wählt auf seinem Tab Geschenkkarte ein fertiges Design und dessen Farbe; dort legen Sie auch Beträge und Zustellung fest.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Leere Felder verwenden den Shopnamen und die Kartentexte in der Shopsprache.',
 	),
 );

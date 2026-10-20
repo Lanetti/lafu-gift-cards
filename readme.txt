@@ -4,7 +4,7 @@ Tags: gift card, gift certificate, voucher, woocommerce, store credit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.10.2
+Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,11 +19,10 @@ Everything below is free, with no account, licence key or upsell screens.
 = Selling =
 
 * Ready amounts and an own amount with your lowest and highest limit.
-* A Colour card in your own brand colour, set on the product.
-* Illustrated Christmas and Gift ribbon cards, drawn so the amount, code and QR code stay readable.
-* One design per product, chosen by the shop. Make a product per occasion in one click from the Designs page.
+* Three ready designs: Colour in your own brand colour, Gift ribbon and Christmas, drawn so the amount, code and QR code stay readable.
+* One design per product, with its colour, picked on the product's Gift card tab. The card shows your shop name.
 * A live preview of the card while the buyer fills in the form, which stays in view while they scroll.
-* Change every text on the card, for example to your own language, for the whole shop or per product.
+* Change the heading of the card per product, for example to your own language. Card texts come in 19 languages.
 * Every card carries a QR code for quick lookup at the till.
 * Send to someone else with their name, your name or anonymously, a message and a delivery date.
 * Several recipients in one go: each address gets its own card.
@@ -69,7 +68,7 @@ Everything below is free, with no account, licence key or upsell screens.
 
 = LAFU Gift Cards Pro =
 
-Everything above is free and stays free. For shops that want more, the separate [LAFU Gift Cards Pro](https://www.lanetti.fi/products/gift-cards) add-on adds a till for the counter with QR scanning, printed card batches, bulk orders for companies, store credit from refunds, top-ups, group gifts, buyer photo cards, illustrated occasion designs, photo and brand designs (drag the amount anywhere, own font and colour), text message and WhatsApp delivery, bonus cards, limits by category or product, expiry reminders, reports, a REST API and webhooks.
+Everything above is free and stays free. For shops that want more, the separate [LAFU Gift Cards Pro](https://www.lanetti.fi/products/gift-cards) add-on adds the Designer (your own words and colours on every design, the style of the gift card page, and designs made from your own photo or printed card, with the amount placed anywhere), a till for the counter with QR scanning, printed card batches, bulk orders for companies, store credit from refunds, top-ups, group gifts, buyer photo cards, ten illustrated occasion designs, text message and WhatsApp delivery, bonus cards, limits by category or product, expiry reminders, reports, a REST API and webhooks.
 
 == Installation ==
 
@@ -111,6 +110,10 @@ Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balanc
 The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License 1.1, licence files in assets/fonts). No fonts are loaded from other servers.
 
 == Changelog ==
+
+= 1.11.0 =
+* The Designer page moves to LAFU Gift Cards Pro. The free plugin keeps the three ready designs, picked with their colour on each gift card product. Texts and colours you saved in the Designer keep showing on your cards.
+* The first-run tour starts with your first gift card product.
 
 = 1.10.2 =
 * A "Pro features" link on the Plugins screen and a small card at the bottom of the Gift cards page that says what the Pro add-on adds. The card can be hidden, and neither shows once Pro is active.

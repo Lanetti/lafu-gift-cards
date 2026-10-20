@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Tezgah için kasa, basılı kart partileri, mağaza kredisi, bakiye yükleme, grup hediyeleri, fotoğraf ve marka tasarımları, bonus kartlar, raporlar ve daha fazlası.',
 		'See what Pro adds'                               => 'Pro\'nun neler kattığını görün',
 		'Hide'                                            => 'Gizle',
+		'Sell your first gift card'                       => 'İlk hediye kartınızı satın',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Bir hediye kartı ürünü ekleyin ve Hediye kartı sekmesinde hazır bir tasarım ile renginizi seçin. Satılan her kart burada görünür: kod, ad veya e-postayla arayın.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Her hediye kartı ürünü, Hediye kartı sekmesinde hazır bir tasarım ve rengini seçer; tutarlar ve teslimat da orada ayarlanır.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Boş alanlar mağaza adını ve mağaza dilindeki kart metinlerini kullanır.',
 	),
 );

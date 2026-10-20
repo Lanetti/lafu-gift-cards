@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Une caisse pour le comptoir, des lots de cartes imprimées, l\'avoir en boutique, la recharge, les cadeaux en groupe, les designs photo et de marque, les cartes bonus, les rapports et plus encore.',
 		'See what Pro adds'                               => 'Voir ce qu\'apporte Pro',
 		'Hide'                                            => 'Masquer',
+		'Sell your first gift card'                       => 'Vendez votre première carte cadeau',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Ajoutez un produit carte cadeau et choisissez un design prêt à l\'emploi et votre couleur dans son onglet Carte cadeau. Chaque carte vendue apparaît ici : recherche par code, nom ou e-mail.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Chaque produit carte cadeau choisit un design prêt à l\'emploi et sa couleur dans son onglet Carte cadeau, où se règlent aussi les montants et la livraison.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Les champs vides utilisent le nom de la boutique et les textes de la carte dans la langue de la boutique.',
 	),
 );

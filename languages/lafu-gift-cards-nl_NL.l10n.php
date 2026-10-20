@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Een kassa voor de balie, gedrukte kaartenreeksen, winkeltegoed, opwaarderen, groepscadeaus, foto- en merkontwerpen, bonuskaarten, rapporten en meer.',
 		'See what Pro adds'                               => 'Bekijk wat Pro toevoegt',
 		'Hide'                                            => 'Verbergen',
+		'Sell your first gift card'                       => 'Verkoop je eerste cadeaukaart',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Voeg een cadeaukaartproduct toe en kies op het tabblad Cadeaukaart een kant-en-klaar ontwerp en je kleur. Elke verkochte kaart staat hier: zoek op code, naam of e-mail.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Elk cadeaukaartproduct kiest op het tabblad Cadeaukaart een kant-en-klaar ontwerp en de kleur; daar stel je ook de bedragen en bezorging in.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Lege velden gebruiken de winkelnaam en de kaartteksten in de taal van de winkel.',
 	),
 );

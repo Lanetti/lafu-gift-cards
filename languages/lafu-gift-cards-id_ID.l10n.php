@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Kasir untuk konter, kartu cetak dalam jumlah banyak, kredit toko, isi ulang, hadiah grup, desain foto dan merek, kartu bonus, laporan, dan lainnya.',
 		'See what Pro adds'                               => 'Lihat apa yang ditambahkan Pro',
 		'Hide'                                            => 'Sembunyikan',
+		'Sell your first gift card'                       => 'Jual kartu hadiah pertama Anda',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Tambahkan produk kartu hadiah lalu pilih desain siap pakai dan warna Anda di tab Kartu hadiah. Setiap kartu yang terjual muncul di sini: cari dengan kode, nama, atau email.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Setiap produk kartu hadiah memilih desain siap pakai dan warnanya di tab Kartu hadiah, tempat nominal dan pengiriman juga diatur.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Kolom kosong memakai nama toko dan teks kartu dalam bahasa toko.',
 	),
 );

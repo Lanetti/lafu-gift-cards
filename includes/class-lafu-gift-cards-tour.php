@@ -33,19 +33,14 @@ class Lafu_Gift_Cards_Tour {
 	public static function steps() {
 		$steps = array(
 			array(
-				'target' => '.lafu-gc-nav a[href*="view=designs"]',
-				'title'  => __( 'Make it look like your shop', 'lafu-gift-cards' ),
-				'text'   => __( 'Pick a design, your colour and your words in the Designer. New product with this design puts the gift card on sale in one click.', 'lafu-gift-cards' ),
+				'target' => '.lafu-gc-nav a:first-child',
+				'title'  => __( 'Sell your first gift card', 'lafu-gift-cards' ),
+				'text'   => __( 'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.', 'lafu-gift-cards' ),
 			),
 			array(
 				'target' => '.lafu-gc-nav a[href*="view=issue"]',
 				'title'  => __( 'Sell at the counter', 'lafu-gift-cards' ),
 				'text'   => __( 'Sell a card in your shop in a few seconds. It is saved as a normal order, so your books stay right.', 'lafu-gift-cards' ),
-			),
-			array(
-				'target' => '.lafu-gc-nav a:first-child',
-				'title'  => __( 'Every card in one place', 'lafu-gift-cards' ),
-				'text'   => __( 'Search by code, name or email. Open a card to see its balance and every change.', 'lafu-gift-cards' ),
 			),
 			array(
 				'target' => '.lafu-gc-nav a:last-child',

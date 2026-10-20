@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Uma caixa para o balcão, lotes de cartões impressos, crédito na loja, carregamentos, presentes de grupo, designs com fotografia e de marca, cartões bónus, relatórios e mais.',
 		'See what Pro adds'                               => 'Ver o que o Pro acrescenta',
 		'Hide'                                            => 'Ocultar',
+		'Sell your first gift card'                       => 'Venda o seu primeiro cartão-presente',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Adicione um produto cartão-presente e escolha um design pronto e a sua cor no separador Cartão-presente. Cada cartão vendido aparece aqui: pesquise por código, nome ou e-mail.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Cada produto cartão-presente escolhe um design pronto e a sua cor no separador Cartão-presente, onde também se definem os valores e a entrega.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Os campos vazios usam o nome da loja e os textos do cartão no idioma da loja.',
 	),
 );

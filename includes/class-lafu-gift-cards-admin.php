@@ -50,7 +50,6 @@ class Lafu_Gift_Cards_Admin {
 		if ( ! $order_screen ) {
 			lafu_gift_cards_register_assets();
 			wp_enqueue_style( 'lafu-gift-cards-admin', plugins_url( 'assets/admin.css', LAFU_GIFT_CARDS_FILE ), array( 'lafu-gift-cards-card' ), LAFU_GIFT_CARDS_VERSION );
-			wp_enqueue_script( 'lafu-gift-cards-colours', plugins_url( 'assets/admin-settings.js', LAFU_GIFT_CARDS_FILE ), array(), LAFU_GIFT_CARDS_VERSION, true );
 		}
 	}
 
@@ -136,8 +135,6 @@ class Lafu_Gift_Cards_Admin {
 			self::render_card();
 		} elseif ( 'issue' === $view ) {
 			self::counter();
-		} elseif ( Lafu_Gift_Cards_Design_Page::VIEW === $view ) {
-			Lafu_Gift_Cards_Design_Page::render();
 		} elseif ( 'import' === $view ) {
 			self::render_import();
 		} else {
@@ -163,7 +160,7 @@ class Lafu_Gift_Cards_Admin {
 		$clean = array();
 		foreach ( $views as $key => $label ) {
 			$key = sanitize_key( $key );
-			if ( '' !== $key && ! in_array( $key, array( 'card', 'issue', 'import', Lafu_Gift_Cards_Design_Page::VIEW ), true ) ) {
+			if ( '' !== $key && ! in_array( $key, array( 'card', 'issue', 'import' ), true ) ) {
 				$clean[ $key ] = (string) $label;
 			}
 		}
@@ -242,9 +239,8 @@ class Lafu_Gift_Cards_Admin {
 	private static function header( $view ) {
 		$parents = self::parents();
 		$items   = array(
-			''                                => __( 'Cards', 'lafu-gift-cards' ),
-			'issue'                           => __( 'Counter', 'lafu-gift-cards' ),
-			Lafu_Gift_Cards_Design_Page::VIEW => __( 'Designer', 'lafu-gift-cards' ),
+			''      => __( 'Cards', 'lafu-gift-cards' ),
+			'issue' => __( 'Counter', 'lafu-gift-cards' ),
 		);
 		foreach ( self::extra_views() as $key => $label ) {
 			if ( ! isset( $parents[ $key ] ) ) {

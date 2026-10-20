@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => '柜台收银、批量打印卡片、店铺余额、充值、团体礼物、照片和品牌设计、奖励卡、报表等。',
 		'See what Pro adds'                               => '了解 Pro 增加的功能',
 		'Hide'                                            => '隐藏',
+		'Sell your first gift card'                       => '卖出您的第一张礼品卡',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => '添加一个礼品卡商品，在其“礼品卡”选项卡中选择现成的设计和您的颜色。卖出的每张卡都会显示在这里：可按卡号、姓名或邮箱搜索。',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => '每个礼品卡商品都在“礼品卡”选项卡中选择现成的设计及其颜色，金额和发送方式也在那里设置。',
+		'Empty fields use the shop name and the card texts in the shop language.' => '空白字段使用店铺名称和店铺语言的卡片文字。',
 	),
 );

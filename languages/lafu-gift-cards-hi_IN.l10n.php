@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'काउंटर के लिए कैश, छपे कार्डों के बैच, स्टोर क्रेडिट, टॉप-अप, ग्रुप गिफ़्ट, फ़ोटो और ब्रांड डिज़ाइन, बोनस कार्ड, रिपोर्ट और भी बहुत कुछ।',
 		'See what Pro adds'                               => 'देखें Pro क्या जोड़ता है',
 		'Hide'                                            => 'छिपाएँ',
+		'Sell your first gift card'                       => 'अपना पहला गिफ़्ट कार्ड बेचें',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'एक गिफ़्ट कार्ड उत्पाद जोड़ें और उसके गिफ़्ट कार्ड टैब पर तैयार डिज़ाइन और अपना रंग चुनें। बिका हर कार्ड यहाँ दिखता है: कोड, नाम या ईमेल से खोजें।',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'हर गिफ़्ट कार्ड उत्पाद अपने गिफ़्ट कार्ड टैब पर तैयार डिज़ाइन और उसका रंग चुनता है, वहीं राशि और डिलीवरी भी तय होती है।',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'खाली फ़ील्ड दुकान का नाम और दुकान की भाषा में कार्ड के टेक्स्ट इस्तेमाल करते हैं।',
 	),
 );

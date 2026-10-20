@@ -63,7 +63,7 @@ class Lafu_Gift_Cards_Settings {
 			array(
 				'title' => __( 'Gift cards', 'lafu-gift-cards' ),
 				'type'  => 'title',
-				'desc'  => __( 'Card designs, colours, texts and the gift card page are under WooCommerce > Gift cards > Designer. Amounts and delivery are set on each gift card product.', 'lafu-gift-cards' ),
+				'desc'  => __( 'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.', 'lafu-gift-cards' ),
 				'id'    => 'lafu_gift_cards_options',
 			),
 			array(

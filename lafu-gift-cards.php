@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       LAFU Gift Cards
  * Description:       Gift cards for WooCommerce. Sell them online and in store, redeem them at checkout and see every euro in a full history.
- * Version:           1.10.2
+ * Version:           1.11.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -20,7 +20,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LAFU_GIFT_CARDS_VERSION', '1.10.2' );
+define( 'LAFU_GIFT_CARDS_VERSION', '1.11.0' );
 define( 'LAFU_GIFT_CARDS_FILE', __FILE__ );
 define( 'LAFU_GIFT_CARDS_DIR', __DIR__ );
 
@@ -40,7 +40,6 @@ require_once __DIR__ . '/includes/class-lafu-gift-cards-gift-page.php';
 require_once __DIR__ . '/includes/class-lafu-gift-cards-settings.php';
 require_once __DIR__ . '/includes/class-lafu-gift-cards-privacy.php';
 require_once __DIR__ . '/includes/class-lafu-gift-cards-admin.php';
-require_once __DIR__ . '/includes/class-lafu-gift-cards-design-page.php';
 require_once __DIR__ . '/includes/class-lafu-gift-cards-tour.php';
 require_once __DIR__ . '/includes/class-lafu-gift-cards-pro-info.php';
 
@@ -79,7 +78,6 @@ function lafu_gift_cards_boot() {
 	Lafu_Gift_Cards_Privacy::register();
 	if ( is_admin() ) {
 		Lafu_Gift_Cards_Admin::register();
-		Lafu_Gift_Cards_Design_Page::register();
 		Lafu_Gift_Cards_Tour::register();
 		Lafu_Gift_Cards_Pro_Info::register();
 	}

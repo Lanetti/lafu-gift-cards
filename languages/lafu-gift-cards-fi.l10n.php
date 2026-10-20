@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'Kassa myymälään, tulostettavat korttierät, myymälähyvitys, saldon lisääminen, yhteislahjat, kuva- ja brändiulkoasut, bonuskortit, raportit ja paljon muuta.',
 		'See what Pro adds'                               => 'Katso mitä Pro tuo',
 		'Hide'                                            => 'Piilota',
+		'Sell your first gift card'                       => 'Myy ensimmäinen lahjakorttisi',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Lisää lahjakorttituote ja valitse sen Lahjakortti-välilehdellä valmis ulkoasu ja värisi. Jokainen myyty kortti näkyy täällä: hae koodilla, nimellä tai sähköpostilla.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Jokainen lahjakorttituote valitsee Lahjakortti-välilehdellään valmiin ulkoasun ja sen värin. Samassa paikassa asetetaan myös summat ja toimitus.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Tyhjät kentät käyttävät kaupan nimeä ja kortin tekstejä kaupan kielellä.',
 	),
 );

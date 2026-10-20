@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => '店頭用のレジ、印刷カードの一括作成、ストアクレジット、チャージ、グループギフト、写真・ブランドデザイン、ボーナスカード、レポートなど。',
 		'See what Pro adds'                               => 'Pro で増える機能を見る',
 		'Hide'                                            => '非表示',
+		'Sell your first gift card'                       => '最初のギフトカードを販売',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'ギフトカード商品を追加し、その「ギフトカード」タブで既成デザインと色を選びます。販売したカードはすべてここに表示され、コード・名前・メールで検索できます。',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => '各ギフトカード商品は「ギフトカード」タブで既成デザインと色を選びます。金額と配送もそこで設定します。',
+		'Empty fields use the shop name and the card texts in the shop language.' => '空欄の項目にはショップ名とショップの言語のカード文言が使われます。',
 	),
 );

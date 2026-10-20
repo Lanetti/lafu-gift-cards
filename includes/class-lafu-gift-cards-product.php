@@ -287,7 +287,7 @@ class Lafu_Gift_Cards_Product {
 			esc_attr( wp_json_encode( $shop_texts ) ),
 			Lafu_Gift_Cards_Designs::render( $preview_card, 'web' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside render().
 		);
-		echo '<span class="description">' . esc_html__( 'Empty fields use the texts on the Designs page.', 'lafu-gift-cards' ) . '</span> ';
+		echo '<span class="description">' . esc_html__( 'Empty fields use the shop name and the card texts in the shop language.', 'lafu-gift-cards' ) . '</span> ';
 		echo '<button type="button" class="button" data-lafu-gc-product-image>' . esc_html__( 'Use this card as the product image', 'lafu-gift-cards' ) . '</button>';
 		echo '<span class="description" data-lafu-gc-product-image-status></span></div>';
 		echo '</div>';

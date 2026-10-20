@@ -371,5 +371,9 @@ return array(
 		'A till for your counter, printed card batches, store credit, top-ups, group gifts, photo and brand designs, bonus cards, reports and more.' => 'En kassa för disken, utskrivna kortomgångar, butikskredit, påfyllning, gruppgåvor, foto- och varumärkesdesigner, bonuskort, rapporter och mer.',
 		'See what Pro adds'                               => 'Se vad Pro ger',
 		'Hide'                                            => 'Dölj',
+		'Sell your first gift card'                       => 'Sälj ditt första presentkort',
+		'Add a gift card product and pick one of the ready designs and your colour on its Gift card tab. Every card you sell shows up here: search by code, name or email.' => 'Lägg till en presentkortsprodukt och välj en färdig design och din färg på dess flik Presentkort. Varje sålt kort syns här: sök på kod, namn eller e-post.',
+		'Each gift card product picks one of the ready designs and its colour on its Gift card tab, where the amounts and delivery are set too.' => 'Varje presentkortsprodukt väljer en färdig design och dess färg på fliken Presentkort, där belopp och leverans också ställs in.',
+		'Empty fields use the shop name and the card texts in the shop language.' => 'Tomma fält använder butikens namn och korttexterna på butikens språk.',
 	),
 );
