@@ -549,6 +549,16 @@ class Lafu_Gift_Cards_Product {
 
 			<fieldset class="lafu-gc-recipient">
 				<legend><?php esc_html_e( 'Who is it for?', 'lafu-gift-cards' ); ?></legend>
+				<?php
+				/**
+				 * Start of the Who is it for part of the gift card form, for
+				 * example a choice between an emailed and a printed card.
+				 *
+				 * @param WC_Product $product Gift card product.
+				 * @param array      $options Product options.
+				 */
+				do_action( 'lafu_gift_cards_buyer_form_delivery', $product, $options );
+				?>
 				<?php if ( ! $options['physical'] ) : ?>
 					<p>
 						<label><input type="checkbox" name="lafu_gc_gift" value="1" data-lafu-gc-gift <?php checked( $posted['gift'] ); ?>> <?php esc_html_e( 'Send it to someone else', 'lafu-gift-cards' ); ?></label>
@@ -897,9 +907,18 @@ class Lafu_Gift_Cards_Product {
 		$design = $options['designs'][0];
 		$colour = empty( Lafu_Gift_Cards_Designs::get( $design )['colour'] ) ? '' : $options['colour'];
 
-		$gift   = $options['physical'] || $posted['gift'];
-		$emails = array();
-		if ( $gift && ! $options['physical'] ) {
+		/**
+		 * Whether this card is printed and sent or handed over by the shop
+		 * instead of emailed. The product's Printed card setting by default;
+		 * an add-on can let the buyer choose per order line.
+		 *
+		 * @param bool       $physical Printed card.
+		 * @param WC_Product $product  Gift card product.
+		 */
+		$physical = (bool) apply_filters( 'lafu_gift_cards_physical_line', $options['physical'], $product );
+		$gift     = $physical || $posted['gift'];
+		$emails   = array();
+		if ( $gift && ! $physical ) {
 			$emails = self::parse_emails( $posted['recipient_email'] );
 			if ( ! $emails ) {
 				return new WP_Error( 'lafu_gc_email', __( 'Enter the recipient email address.', 'lafu-gift-cards' ) );
@@ -917,7 +936,7 @@ class Lafu_Gift_Cards_Product {
 		}
 
 		$deliver = '';
-		if ( $gift && ! $options['physical'] && '' !== $posted['deliver_date'] ) {
+		if ( $gift && ! $physical && '' !== $posted['deliver_date'] ) {
 			$date = DateTime::createFromFormat( '!Y-m-d', $posted['deliver_date'], wp_timezone() );
 			if ( ! $date || $date->format( 'Y-m-d' ) < wp_date( 'Y-m-d' ) || $date->getTimestamp() > strtotime( '+1 year' ) ) {
 				return new WP_Error( 'lafu_gc_date', __( 'Choose a delivery date between today and one year from now.', 'lafu-gift-cards' ) );
@@ -937,7 +956,7 @@ class Lafu_Gift_Cards_Product {
 			'anonymous'        => $gift && $posted['anonymous'],
 			'message'          => $gift ? mb_substr( $posted['message'], 0, self::MESSAGE_LIMIT ) : '',
 			'deliver_date'     => $deliver,
-			'physical'         => $options['physical'],
+			'physical'         => $physical,
 		);
 
 		/**
@@ -973,9 +992,9 @@ class Lafu_Gift_Cards_Product {
 		if ( count( Lafu_Gift_Cards_Designs::all() ) > 1 && ! empty( $data['design'] ) ) {
 			$design                                   = Lafu_Gift_Cards_Designs::get( $data['design'] );
 			$out[ __( 'Design', 'lafu-gift-cards' ) ] = $design['label'];
-			if ( ! empty( $design['colour'] ) && ! empty( $data['colour'] ) ) {
-				$out[ __( 'Colour', 'lafu-gift-cards' ) ] = strtoupper( (string) $data['colour'] );
-			}
+		}
+		if ( ! empty( $data['physical'] ) ) {
+			$out[ __( 'Delivery', 'lafu-gift-cards' ) ] = __( 'Printed card', 'lafu-gift-cards' );
 		}
 		if ( ! empty( $data['deliver_date'] ) ) {
 			$out[ __( 'Delivery date', 'lafu-gift-cards' ) ] = wp_date( get_option( 'date_format' ), strtotime( $data['deliver_date'] . ' 12:00:00' ) );

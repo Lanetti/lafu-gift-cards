@@ -4,7 +4,7 @@ Tags: gift card, gift certificate, voucher, woocommerce, store credit
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.11.0
+Stable tag: 1.12.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -110,6 +110,10 @@ Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balanc
 The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License 1.1, licence files in assets/fonts). No fonts are loaded from other servers.
 
 == Changelog ==
+
+= 1.12.0 =
+* The cart and order show Delivery: Printed card for printed cards, and no longer show the colour as a code.
+* Hooks for add-ons: lafu_gift_cards_buyer_form_delivery (start of the Who is it for part) and lafu_gift_cards_physical_line (printed or emailed per order line).
 
 = 1.11.0 =
 * The Designer page moves to LAFU Gift Cards Pro. The free plugin keeps the three ready designs, picked with their colour on each gift card product. Texts and colours you saved in the Designer keep showing on your cards.
