@@ -2,12 +2,11 @@
 /**
  * Plugin Name:       LAFU Gift Cards
  * Description:       Gift cards for WooCommerce. Sell them online and in store, redeem them at checkout and see every euro in a full history.
- * Version:           1.12.1
+ * Version:           1.12.2
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
- * Author:            Elsama
- * Author URI:        https://lafu.fi
+ * Author:            LAFU
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       lafu-gift-cards
@@ -20,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LAFU_GIFT_CARDS_VERSION', '1.12.1' );
+define( 'LAFU_GIFT_CARDS_VERSION', '1.12.2' );
 define( 'LAFU_GIFT_CARDS_FILE', __FILE__ );
 define( 'LAFU_GIFT_CARDS_DIR', __DIR__ );
 
