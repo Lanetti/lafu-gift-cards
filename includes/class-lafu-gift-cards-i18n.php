@@ -78,6 +78,9 @@ class Lafu_Gift_Cards_I18n {
 		if ( ! function_exists( 'pll_register_string' ) ) {
 			return;
 		}
+		foreach ( Lafu_Gift_Cards_Redemption::strings() as $name => $value ) {
+			pll_register_string( $name, $value, 'LAFU Gift Cards', Lafu_Gift_Cards_Redemption::OPT_TEXT === $name );
+		}
 		$saved = get_option( 'lafu_gift_cards_card_texts', array() );
 		if ( ! is_array( $saved ) ) {
 			return;

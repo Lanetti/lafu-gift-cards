@@ -178,6 +178,73 @@ class Lafu_Gift_Cards_Gift_Page {
 	}
 
 	/**
+	 * Everything the recipient reads about a card, in one place: this page
+	 * and the gift card email (templates/emails/lafu-gift-card.php) both
+	 * build from it, so they show the same greeting, headline, message,
+	 * buttons, steps, balance and colours.
+	 *
+	 * @param object      $card  Card row (or sample).
+	 * @param string|null $style celebration, card or letter; null = the shop's setting.
+	 * @return array style, texts, paint, active, festive, shop, host, name, sender, eyebrow, headline,
+	 *               intro, greeting, message, from, use (Lafu_Gift_Cards_Redemption::texts()), balance,
+	 *               accent, on_accent, highlight, and the style's main_bg, main_text, ghost, ghost_text, step and page_bg colours.
+	 */
+	public static function view( $card, $style = null ) {
+		$style   = null === $style ? self::settings()['style'] : self::style( $style );
+		$texts   = Lafu_Gift_Cards_Designs::card_texts( $card );
+		$paint   = Lafu_Gift_Cards_Designs::paint( $card->design, $card );
+		$active  = Lafu_Gift_Cards_Store::STATUS_ACTIVE === $card->status && ! Lafu_Gift_Cards_Store::is_past( $card->expires_at );
+		$name    = trim( (string) $card->recipient_name );
+		$sender  = trim( (string) $card->sender_name );
+		$message = trim( (string) $card->message );
+		$intro   = '' !== $sender
+			/* translators: 1: sender name, 2: shop name */
+			? sprintf( __( '%1$s sent you a gift card to %2$s.', 'lafu-gift-cards' ), $sender, $texts['shop'] )
+			/* translators: %s: shop name */
+			: sprintf( __( 'You received a gift card to %s.', 'lafu-gift-cards' ), $texts['shop'] );
+		$until = empty( $card->expires_at ) ? __( 'No expiry', 'lafu-gift-cards' ) : Lafu_Gift_Cards_Designs::fill( $texts['until'], 'date', Lafu_Gift_Cards_Account::expiry_label( $card ) );
+
+		/* translators: %s: recipient name */
+		$greeting = '' !== $name ? sprintf( __( 'Dear %s,', 'lafu-gift-cards' ), $name ) : __( 'Hello,', 'lafu-gift-cards' );
+
+		// Button, step and page colours of each style, as assets/gift-page.css paints them.
+		$colours = array(
+			'celebration' => array( '#1f1a24', '#ffffff', '#c9b6dc', '#4a2c6b', '#5b2a86', '#fbf7f2' ),
+			'card'        => array( $paint['solid'], $paint['text'], '#c9b6dc', '#4a2c6b', '#5b2a86', '#f3f1ee' ),
+			'letter'      => array( '#2b1d14', '#ffffff', '#c9b49a', '#2b1d14', '#8a4b2a', '#f6efe4' ),
+		);
+		$colours = $colours[ $style ];
+		return array(
+			'style'      => $style,
+			'texts'      => $texts,
+			'paint'      => $paint,
+			'active'     => $active,
+			'festive'    => $active && (float) $card->balance > 0,
+			'shop'       => $texts['shop'],
+			'host'       => (string) wp_parse_url( home_url(), PHP_URL_HOST ),
+			'name'       => $name,
+			'sender'     => $sender,
+			'eyebrow'    => '' !== $name ? Lafu_Gift_Cards_Designs::fill( $texts['for'], 'name', $name ) : __( 'A gift for you', 'lafu-gift-cards' ),
+			'headline'   => '' !== trim( (string) $texts['line'] ) ? $texts['line'] : $texts['label'],
+			'intro'      => $intro,
+			'greeting'   => $greeting,
+			'message'    => $message,
+			'from'       => '' !== $sender ? Lafu_Gift_Cards_Designs::fill( $texts['from'], 'name', $sender ) : '',
+			'use'        => Lafu_Gift_Cards_Redemption::texts( $card ),
+			'balance'    => lafu_gift_cards_plain_price( $card->balance, array( 'currency' => $card->currency ) ) . ' · ' . $until,
+			'accent'     => $paint['solid'],
+			'on_accent'  => $paint['text'],
+			'highlight'  => $paint['accent'],
+			'main_bg'    => $colours[0],
+			'main_text'  => $colours[1],
+			'ghost'      => $colours[2],
+			'ghost_text' => $colours[3],
+			'step'       => $colours[4],
+			'page_bg'    => $colours[5],
+		);
+	}
+
+	/**
 	 * Send the page for a card and stop.
 	 *
 	 * @param object      $card  Card row (or sample).
@@ -185,24 +252,17 @@ class Lafu_Gift_Cards_Gift_Page {
 	 */
 	public static function output( $card, $style = null ) {
 		$settings = self::settings();
-		$style    = null === $style ? $settings['style'] : self::style( $style );
-		$texts    = Lafu_Gift_Cards_Designs::card_texts( $card );
-		$paint    = Lafu_Gift_Cards_Designs::paint( $card->design, $card );
-		$active   = Lafu_Gift_Cards_Store::STATUS_ACTIVE === $card->status && ! Lafu_Gift_Cards_Store::is_past( $card->expires_at );
-		$festive  = $active && (float) $card->balance > 0;
-		$money    = array( 'currency' => $card->currency );
-		$shop_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
-		$host     = (string) wp_parse_url( home_url(), PHP_URL_HOST );
-		$name     = trim( (string) $card->recipient_name );
-		$sender   = trim( (string) $card->sender_name );
-		$headline = '' !== trim( (string) $texts['line'] ) ? $texts['line'] : $texts['label'];
-		$intro    = '' !== $sender
-			/* translators: 1: sender name, 2: shop name */
-			? sprintf( __( '%1$s sent you a gift card to %2$s.', 'lafu-gift-cards' ), $sender, $texts['shop'] )
-			/* translators: %s: shop name */
-			: sprintf( __( 'You received a gift card to %s.', 'lafu-gift-cards' ), $texts['shop'] );
-		$until   = empty( $card->expires_at ) ? __( 'No expiry', 'lafu-gift-cards' ) : Lafu_Gift_Cards_Designs::fill( $texts['until'], 'date', Lafu_Gift_Cards_Account::expiry_label( $card ) );
-		$on_dark = Lafu_Gift_Cards_Designs::is_light( $paint['text'] );
+		$view     = self::view( $card, $style );
+		$style    = $view['style'];
+		$texts    = $view['texts'];
+		$paint    = $view['paint'];
+		$active   = $view['active'];
+		$festive  = $view['festive'];
+		$use      = $view['use'];
+		$host     = $view['host'];
+		$headline = $view['headline'];
+		$intro    = $view['intro'];
+		$on_dark  = Lafu_Gift_Cards_Designs::is_light( $paint['text'] );
 
 		nocache_headers();
 		header( 'X-Robots-Tag: noindex, nofollow' );
@@ -238,7 +298,7 @@ class Lafu_Gift_Cards_Gift_Page {
 		</div>
 		<?php if ( 'celebration' === $style ) : ?>
 			<div class="lafu-gp-greeting">
-				<p class="lafu-gp-eyebrow"><?php echo esc_html( '' !== $name ? Lafu_Gift_Cards_Designs::fill( $texts['for'], 'name', $name ) : __( 'A gift for you', 'lafu-gift-cards' ) ); ?></p>
+				<p class="lafu-gp-eyebrow"><?php echo esc_html( $view['eyebrow'] ); ?></p>
 				<h1><?php echo esc_html( $headline ); ?></h1>
 				<p class="lafu-gp-intro"><?php echo esc_html( $intro ); ?></p>
 			</div>
@@ -266,11 +326,10 @@ class Lafu_Gift_Cards_Gift_Page {
 					<span class="lafu-gp-envelope__seal" aria-hidden="true"></span>
 				</div>
 				<figure class="lafu-gp-letter">
-					<?php /* translators: %s: recipient name */ ?>
-					<p class="lafu-gp-letter__to"><?php echo esc_html( '' !== $name ? sprintf( __( 'Dear %s,', 'lafu-gift-cards' ), $name ) : __( 'Hello,', 'lafu-gift-cards' ) ); ?></p>
-					<blockquote><?php echo esc_html( '' !== trim( (string) $card->message ) ? $card->message : $intro ); ?></blockquote>
-					<?php if ( '' !== $sender ) : ?>
-						<figcaption><?php echo esc_html( Lafu_Gift_Cards_Designs::fill( $texts['from'], 'name', $sender ) ); ?></figcaption>
+					<p class="lafu-gp-letter__to"><?php echo esc_html( $view['greeting'] ); ?></p>
+					<blockquote><?php echo esc_html( '' !== $view['message'] ? $view['message'] : $intro ); ?></blockquote>
+					<?php if ( '' !== $view['from'] ) : ?>
+						<figcaption><?php echo esc_html( $view['from'] ); ?></figcaption>
 					<?php endif; ?>
 				</figure>
 			<?php else : ?>
@@ -279,17 +338,19 @@ class Lafu_Gift_Cards_Gift_Page {
 				</div>
 			<?php endif; ?>
 
-			<?php if ( 'letter' !== $style && '' !== trim( (string) $card->message ) ) : ?>
+			<?php if ( 'letter' !== $style && '' !== $view['message'] ) : ?>
 				<figure class="lafu-gp-panel lafu-gp-message">
-					<blockquote><?php echo esc_html( $card->message ); ?></blockquote>
-					<?php if ( '' !== $sender ) : ?>
-						<figcaption><?php echo esc_html( Lafu_Gift_Cards_Designs::fill( $texts['from'], 'name', $sender ) ); ?></figcaption>
+					<blockquote><?php echo esc_html( $view['message'] ); ?></blockquote>
+					<?php if ( '' !== $view['from'] ) : ?>
+						<figcaption><?php echo esc_html( $view['from'] ); ?></figcaption>
 					<?php endif; ?>
 				</figure>
 			<?php endif; ?>
 
 			<div class="lafu-gp-actions">
-				<a class="lafu-gp-button lafu-gp-button--main" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Shop with your gift card', 'lafu-gift-cards' ); ?></a>
+				<?php if ( $use['button'] ) : ?>
+					<a class="lafu-gp-button lafu-gp-button--main" href="<?php echo esc_url( $use['url'] ); ?>"><?php echo esc_html( $use['label'] ); ?></a>
+				<?php endif; ?>
 				<button type="button" class="lafu-gp-button lafu-gp-button--ghost" data-lafu-gp-print>
 					<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
 					<?php esc_html_e( 'Save as PDF or print', 'lafu-gift-cards' ); ?>
@@ -297,13 +358,13 @@ class Lafu_Gift_Cards_Gift_Page {
 			</div>
 
 			<section id="lafu-gp-how" class="lafu-gp-panel lafu-gp-how">
-				<h2><?php esc_html_e( 'How to use it', 'lafu-gift-cards' ); ?></h2>
-				<?php /* translators: %s: shop address */ ?>
-				<p><span>1</span><?php echo esc_html( sprintf( __( 'Online: enter the code at checkout on %s. What you do not spend stays on the card for next time.', 'lafu-gift-cards' ), $host ) ); ?></p>
-				<p><span>2</span><?php esc_html_e( 'In the shop: show the QR code at the counter.', 'lafu-gift-cards' ); ?></p>
+				<h2><?php echo esc_html( $use['heading'] ); ?></h2>
+				<?php foreach ( $use['steps'] as $step_number => $step ) : ?>
+					<p><span><?php echo esc_html( number_format_i18n( $step_number + 1 ) ); ?></span><span class="lafu-gp-step"><?php echo wp_kses_post( $step ); ?></span></p>
+				<?php endforeach; ?>
 				<div class="lafu-gp-balance">
 					<span><?php esc_html_e( 'Balance', 'lafu-gift-cards' ); ?></span>
-					<strong><?php echo esc_html( lafu_gift_cards_plain_price( $card->balance, $money ) . ' · ' . $until ); ?></strong>
+					<strong><?php echo esc_html( $view['balance'] ); ?></strong>
 				</div>
 			</section>
 		<?php endif; ?>

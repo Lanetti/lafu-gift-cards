@@ -253,6 +253,11 @@ class Lafu_Gift_Cards_Account {
 	 * @return string
 	 */
 	public static function print_url( $card ) {
+		if ( empty( $card->id ) ) {
+			// A sample card (test email, email preview) is never saved: link the shop manager's page preview.
+			$preview = add_query_arg( Lafu_Gift_Cards_Gift_Page::PREVIEW_QUERY, Lafu_Gift_Cards_Gift_Page::settings()['style'], home_url( '/' ) );
+			return add_query_arg( 'design', isset( $card->design ) ? (string) $card->design : '', $preview );
+		}
 		return add_query_arg(
 			array(
 				self::PRINT_QUERY => (int) $card->id,
@@ -289,7 +294,7 @@ class Lafu_Gift_Cards_Account {
 	 * @return object
 	 */
 	public static function email_card( $card ) {
-		if ( self::email_shows_code() ) {
+		if ( ! is_object( $card ) || self::email_shows_code() ) {
 			return $card;
 		}
 		$shown       = clone $card;

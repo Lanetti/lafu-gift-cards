@@ -52,6 +52,9 @@ class Lafu_Gift_Cards_Product {
 		add_filter( 'woocommerce_get_price_html', array( __CLASS__, 'price_html' ), 10, 2 );
 		add_filter( 'woocommerce_product_get_tax_status', array( __CLASS__, 'tax_status' ), 10, 2 );
 		add_filter( 'woocommerce_coupon_is_valid_for_product', array( __CLASS__, 'no_coupons' ), 10, 2 );
+		add_filter( 'woocommerce_coupon_get_items_to_apply', array( __CLASS__, 'coupon_items' ), 10, 2 );
+		add_filter( 'woocommerce_coupon_get_items_to_validate', array( __CLASS__, 'coupon_items_legacy' ), 10, 2 );
+		add_filter( 'woocommerce_coupon_is_valid', array( __CLASS__, 'product_coupon_on_cards' ), 10, 3 );
 		add_filter( 'woocommerce_product_supports', array( __CLASS__, 'no_ajax_add' ), 10, 3 );
 		add_filter( 'woocommerce_product_add_to_cart_url', array( __CLASS__, 'add_to_cart_url' ), 10, 2 );
 		add_filter( 'woocommerce_product_add_to_cart_text', array( __CLASS__, 'add_to_cart_text' ), 10, 2 );
@@ -839,6 +842,114 @@ class Lafu_Gift_Cards_Product {
 	 */
 	public static function no_coupons( $valid, $product ) {
 		return self::is_gift_card( $product ) ? false : $valid;
+	}
+
+	/**
+	 * Keep gift card lines out of every coupon, also cart-wide ones such as
+	 * "10 off the cart". WooCommerce asks no_coupons() only for product
+	 * coupons, and a fixed cart coupon would otherwise spread part of its
+	 * discount over the gift card line.
+	 *
+	 * @param array     $items  Items the coupon applies to (objects with product and object).
+	 * @param WC_Coupon $coupon Coupon.
+	 * @return array
+	 */
+	public static function coupon_items( $items, $coupon = null ) {
+		unset( $coupon );
+		if ( ! is_array( $items ) ) {
+			return $items;
+		}
+		foreach ( $items as $key => $item ) {
+			if ( self::is_card_line( $item ) ) {
+				unset( $items[ $key ] );
+			}
+		}
+		return $items;
+	}
+
+	/**
+	 * Whether this WooCommerce lacks woocommerce_coupon_get_items_to_apply.
+	 * The filter's docblock says 8.8.0, but it first ships in 8.9.0.
+	 *
+	 * @return bool
+	 */
+	private static function legacy_coupons() {
+		return defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '8.9.0', '<' );
+	}
+
+	/**
+	 * The same for WooCommerce before 8.9, which has no
+	 * woocommerce_coupon_get_items_to_apply filter. There a cart coupon
+	 * (fixed cart, or a custom cart type) takes every line it can validate,
+	 * whatever no_coupons() says (percent and fixed product coupons already
+	 * skip gift cards through no_coupons()), so gift
+	 * card lines leave the lines the coupon looks at. WooCommerce then
+	 * spreads the whole coupon over the other lines, cents included.
+	 * From 8.9 on coupon_items() does this and the list stays as it is.
+	 *
+	 * @param array        $items     Items the coupon is checked and applied against.
+	 * @param WC_Discounts $discounts Discounts object.
+	 * @return array
+	 */
+	public static function coupon_items_legacy( $items, $discounts = null ) {
+		unset( $discounts );
+		if ( ! self::legacy_coupons() ) {
+			return $items;
+		}
+		return self::coupon_items( $items );
+	}
+
+	/**
+	 * Before WooCommerce 8.9 only: a product coupon (percent or fixed
+	 * product, wc_get_product_coupon_types()) on a cart that holds only gift cards. coupon_items_legacy()
+	 * leaves WooCommerce nothing to check, so it would accept the coupon for
+	 * 0 off and count a use. Newer WooCommerce refuses it with "not
+	 * applicable to selected products"; this runs that same WooCommerce
+	 * check on the full list, so the shopper gets the same error.
+	 *
+	 * @param bool         $valid     Valid so far.
+	 * @param WC_Coupon    $coupon    Coupon.
+	 * @param WC_Discounts $discounts Discounts object.
+	 * @return bool
+	 * @throws Exception WooCommerce's own "not applicable" error.
+	 */
+	public static function product_coupon_on_cards( $valid, $coupon = null, $discounts = null ) {
+		if ( ! $valid || ! self::legacy_coupons() || ! $coupon instanceof WC_Coupon || ! $discounts instanceof WC_Discounts
+			|| ! $coupon->is_type( wc_get_product_coupon_types() ) ) {
+			return $valid;
+		}
+		$items = $discounts->get_items();
+		if ( ! $items ) {
+			return $valid;
+		}
+		foreach ( $items as $item ) {
+			if ( ! self::is_card_line( $item ) ) {
+				return $valid;
+			}
+		}
+		require_once __DIR__ . '/class-lafu-gift-cards-coupon-check.php';
+		Lafu_Gift_Cards_Coupon_Check::excluded_items( $coupon, $items );
+		return $valid;
+	}
+
+	/**
+	 * Whether a discount item (cart or order line) is a gift card.
+	 *
+	 * @param object $item Item from WC_Discounts.
+	 * @return bool
+	 */
+	private static function is_card_line( $item ) {
+		if ( ! is_object( $item ) ) {
+			return false;
+		}
+		if ( isset( $item->product ) && self::is_gift_card( $item->product ) ) {
+			return true;
+		}
+		$line = isset( $item->object ) ? $item->object : null;
+		if ( is_array( $line ) ) {
+			return ! empty( $line[ self::ITEM_META ] );
+		}
+		return $line instanceof WC_Order_Item_Product && (bool) lafu_gift_cards_meta_array( $line, self::ITEM_META );
 	}
 
 	/**

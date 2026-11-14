@@ -351,6 +351,10 @@ class Lafu_Gift_Cards_Admin {
 		$share  = (float) $card->initial_amount > 0 ? min( 100, round( 100 * (float) $card->balance / (float) $card->initial_amount ) ) : 0;
 		?>
 		<p class="lafu-gc-back"><a href="<?php echo esc_url( self::page_url() ); ?>">&larr; <?php esc_html_e( 'All gift cards', 'lafu-gift-cards' ); ?></a></p>
+		<?php $review = Lafu_Gift_Cards_Store::meta( $card ); ?>
+		<?php if ( $active && ! empty( $review['review'] ) ) : ?>
+			<div class="notice notice-warning inline"><p><strong><?php esc_html_e( 'Check this card:', 'lafu-gift-cards' ); ?></strong> <?php echo esc_html( (string) $review['review'] ); ?></p></div>
+		<?php endif; ?>
 		<section class="lafu-gc-hero">
 			<div class="lafu-gc-hero__card">
 				<?php echo Lafu_Gift_Cards_Designs::render( $card, 'web' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside render(). ?>

@@ -1,74 +1,94 @@
 === LAFU Gift Cards ===
 Contributors: elsama101
-Tags: gift card, gift certificate, voucher, woocommerce, store credit
+Tags: gift card, gift cards, gift certificate, gift voucher, woocommerce gift cards
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.12.2
+Stable tag: 1.13.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Gift cards for WooCommerce. Sell them online and in store, take them at checkout and see every cent in a full history.
+Sell gift cards online and in your store. Customers pay at checkout, the leftover balance stays on the card, and every cent is tracked.
 
 == Description ==
 
-LAFU Gift Cards turns any simple WooCommerce product into a gift card. Customers choose the amount, see the card in the shop's design, and send the card by email right away or on the day they pick. Shops sell cards at the till too, and every card has a complete history of where its money went.
+Gift cards bring you money up front, new customers who discover your shop, and recipients who usually spend more than the card is worth. LAFU Gift Cards makes selling them simple, online and in your shop.
 
-Everything below is free, with no account, licence key or upsell screens.
+Turn any WooCommerce product into a gift card in a minute. Customers pick an amount, see the card in your shop's colours and send it by email now or on a day they choose. The recipient pays with it at checkout, and whatever they do not spend stays on the card.
 
-= Selling =
+**Completely free.** No account, no fee per card sold, no upsell screens.
 
-* Ready amounts and an own amount with your lowest and highest limit.
-* Three ready designs: Colour in your own brand colour, Gift ribbon and Christmas, drawn so the amount, code and QR code stay readable.
-* One design per product, with its colour, picked on the product's Gift card tab. The card shows your shop name.
-* A live preview of the card while the buyer fills in the form, which stays in view while they scroll.
-* Change the heading of the card per product, for example to your own language. Card texts come in 19 languages.
-* Every card carries a QR code for quick lookup at the till.
-* Send to someone else with their name, your name or anonymously, a message and a delivery date.
-* Several recipients in one go: each address gets its own card.
-* Printed cards that you ship instead of email.
-* Gift cards are sold without VAT and cannot be bought with coupons.
+= Why shops choose LAFU Gift Cards =
 
-= In the shop =
+* **Sell online and at the counter.** A card sold in your shop is saved as a normal paid order, so it is in your sales and bookkeeping.
+* **Full transaction history (ledger) for every card.** Every sale, payment, refund and manual change, with the date and who made it.
+* **Correct VAT and bookkeeping.** The card pays like a payment method, so product prices and VAT stay right.
+* **A card can never be spent twice**, even when two people try at the same moment.
+* **Bring your paper gift cards** from a CSV file, with their own codes and balances.
 
-* Sell a card at the till (cash or card) from WooCommerce > Gift cards. It is saved as a normal paid order, so it appears in your sales and bookkeeping.
-* Give a card away without payment, for example as compensation.
-* Print any card, with its code and design.
+= Gift card products =
 
-= Paying with a card =
+* Fixed amounts, or let customers enter their own amount within your limits.
+* Three ready designs: Colour (your brand colour), Gift ribbon and Christmas.
+* Live preview of the card while the customer fills in the form.
+* Your own heading and text on the card, per product.
 
-* Customers enter the code in the cart or checkout. Works in the classic pages and in the cart and checkout blocks.
-* Partial use: whatever is not spent stays on the card.
-* The card pays like a payment method. Product prices and VAT stay as they are, which is how most multi-purpose vouchers are booked.
-* Several cards on one order, and cards can cover the whole order.
-* Cancelled and refunded orders put the money back on the card automatically.
-* Partly refunded order? Return to card on the order screen puts back what the card paid.
+= Delivery =
 
-= Customers =
+* Email the gift card right away or on a chosen date (scheduled delivery).
+* Send to someone else with a personal message, or anonymously.
+* Several recipients in one go: each gets their own card.
+* Physical gift cards: print and ship them instead of emailing.
 
-* My Account > Gift cards lists their cards with balances, and they can save a card they received to use it with one click.
+= Redeem at checkout =
+
+* Customers enter the code in the cart or checkout, in the block checkout or the classic one.
+* Partial redemption: the unused balance stays on the card.
+* Several gift cards on one order, or one card for the whole order.
+* Cancelled or refunded orders put the money back on the card automatically.
+
+= In your shop =
+
+* Sell a gift card at the counter for cash or card, or give one away for free.
+* Every card has a QR code for quick lookup and can be printed.
+
+= Your customers =
+
+* My Account shows their gift cards and balances, and they can save a card they received.
 * Balance check anywhere with the [lafu_gift_card_balance] shortcode.
 
-= Control =
+= Manage your cards =
 
-* Every change of balance is one row in the card history, written under a database lock, so a card can never be spent twice.
-* Change a balance with a reason, edit the recipient or expiry date, resend the email, or cancel a card.
-* Import existing cards (for example paper cards) from CSV with their own codes and balances. Export all cards to CSV.
-* Optional expiry after a number of months, with a daily job that closes expired cards.
-* Code lookups are rate limited, and codes have about 79 bits of randomness.
-* Works with WooCommerce High-Performance Order Storage, the cart and checkout blocks and the Add to cart with options block.
-* Personal data export and erase through the WordPress privacy tools. Codes and balances are kept, because they are money.
-* Accessible: WCAG 2.1 AA checked.
+* Search every card and see its balance and full transaction history.
+* Change a balance with a reason, edit the recipient or expiry, resend the email or cancel a card.
+* Optional expiry date. Export all cards to CSV.
+
+= Built right =
+
+* Works with the block checkout, High-Performance Order Storage (HPOS) and the WordPress privacy tools.
+* Codes that cannot be guessed, with limits on how often codes can be tried.
+* Accessible (WCAG 2.1 AA) and translated into 20 languages.
 
 = For developers =
 
-* Hooks: lafu_gift_cards_issued, lafu_gift_cards_balance_changed, lafu_gift_cards_designs, lafu_gift_cards_default_expiry.
+* Hooks: lafu_gift_cards_issued, lafu_gift_cards_balance_changed, lafu_gift_cards_designs, lafu_gift_cards_default_expiry, lafu_gift_cards_redemption_texts, lafu_gift_cards_redeem_online.
 * Orders paid with gift cards carry the meta _lafu_gc_redemptions (card, masked code, amount), so accounting tools can book them as a payment.
 * Email templates can be overridden in your theme like any WooCommerce email.
 
 = LAFU Gift Cards Pro =
 
-Everything above is free and stays free. For shops that want more, the separate [LAFU Gift Cards Pro](https://www.lanetti.fi/products/gift-cards) add-on adds the Designer (your own words and colours on every design, the style of the gift card page, and designs made from your own photo or printed card, with the amount placed anywhere), a till for the counter with QR scanning, printed card batches, bulk orders for companies, store credit from refunds, top-ups, group gifts, buyer photo cards, ten illustrated occasion designs, text message and WhatsApp delivery, bonus cards, limits by category or product, expiry reminders, reports, a REST API and webhooks.
+Everything above is free and stays free. For shops that want more, the separate [LAFU Gift Cards Pro](https://www.lanetti.fi/products/gift-cards) add-on adds:
+
+* **Designer**: your own words and colours on every design, the style of the gift card page, and designs made from your own photo or printed card, with the amount placed anywhere
+* **Ten illustrated occasion designs** and buyer photo cards
+* **Till for the counter** with QR scanning
+* **Printed card batches** and **bulk orders** for companies
+* **Store credit** from refunds, **top-ups** and **bonus cards**
+* **Group gifts**: several people chip in for one card
+* **Text message and WhatsApp delivery**
+* **Limits** by category or product
+* **Expiry reminders** and **reports**
+* **REST API and webhooks**
 
 == Installation ==
 
@@ -95,6 +115,34 @@ The card is cancelled. If part of it was already spent, the order gets a note so
 
 Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balance of each card. Customers keep using their old codes.
 
+= Is there a fee per gift card sold? =
+
+No. The plugin is free, and payments go through your own WooCommerce payment methods.
+
+= Can I sell gift cards in my physical shop? =
+
+Yes. Sell them from WooCommerce > Gift cards. Each sale is saved as a normal paid order.
+
+= My customers use the card at an appointment, not in a web shop. Does it fit? =
+
+Yes. Under WooCommerce > Settings > Products > Gift cards, set Customers use the card to At an appointment or booking and add your booking page as the Button link. The gift card page and the email then show a Book your appointment button and steps for the appointment. The button text and the How to use it steps can be reworded too, and Send me a test gift card email shows you the result.
+
+= Can a gift card be used more than once? =
+
+Yes. Customers can pay part of an order with it, and the rest stays on the card for next time.
+
+= Can a gift card be sent on a later date? =
+
+Yes. The buyer picks the delivery date, and the email goes out at 8:00 that morning, in your shop's time zone.
+
+= Do gift cards expire? =
+
+Only if you want them to. Set an expiry in months, or leave it off.
+
+= Does it work with the WooCommerce block checkout? =
+
+Yes, and with the classic cart and checkout too.
+
 == Screenshots ==
 
 1. Buyers choose the amount and recipient and see the card change as they go.
@@ -110,6 +158,32 @@ Yes. WooCommerce > Gift cards > Import takes a CSV file with the code and balanc
 The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License 1.1, licence files in assets/fonts). No fonts are loaded from other servers.
 
 == Changelog ==
+
+= 1.13.2 =
+* Fixed cart coupons (an amount off the whole cart) no longer lower the price of a gift card on WooCommerce 8.5 to 8.8 either. The whole coupon goes to the other products, as on newer WooCommerce. On those versions a product or percentage coupon is also refused again on a cart with only gift cards ("not applicable to selected products"), as on newer WooCommerce. Also on those versions, a coupon's product rules (allowed or excluded products and categories, Exclude sale items) look only at the other products, not at gift card lines.
+* Admin buttons: the hover and focus colour is now a darker pink (dark red for Cancel card), so the white text is easy to read (contrast at least 4.5:1). The step numbers and the main Sell a card tile use the darker colours too.
+
+= 1.13.1 =
+* The gift card email now looks like the gift card page it opens: the same card picture (colours, gradient, photo and illustration where the mail app shows background images), greeting, message, buttons, How to use it steps and balance, in the page style chosen on the Designs page. The email and the page are built from one shared view, so they stay the same.
+* A gift card still never pays for a new gift card or a top-up in the cart: in a cart with other products it pays only those, shipping and fees, and the Have a gift card? box stays. In a cart with only gift cards there is nothing it may pay, so the box is hidden and codes are refused, with a message in the cart and checkout blocks too.
+* New setting Allow paying for new gift cards with existing ones (WooCommerce > Settings > Products > Gift cards, off by default, with a help tip). Off is safer: if on, an old gift card can buy a new card or top one up, which resets its expiry date.
+* Checkout safety: if the cart changes after the gift cards were applied (for example another plugin changes it before the order is made), the cards are taken off and checkout stops with a message, so a card is never left uncharged. Each stop is written to the WooCommerce log (source lafu-gift-cards).
+* Subscriptions and other plugins that calculate copies of the cart (for example renewal carts) no longer get the gift card deducted: cards apply only to the shopper's own cart.
+* Shops that take gift cards in person or at an appointment (How the card is used) no longer show the gift card box in the web shop, and codes are refused at checkout.
+
+= 1.13.0 =
+* How the card is used: a new setting under WooCommerce > Settings > Products > Gift cards for shops where cards are used online, in person at the counter, or at an appointment or booking. Each choice brings its own button and How to use it steps on the gift card page and in the gift card email.
+* The main button (text and link, for example your booking page) can be changed or hidden, and the How to use it heading and steps can be written in your own words, with {shop} and {balance}. The texts can be translated with WPML or Polylang.
+* Send me a test gift card email: a button in the settings sends the real gift card email with a sample card to you.
+
+= 1.12.3 =
+* Money safety: coupons no longer lower the price of a gift card in the cart, also cart-wide coupons such as 10 off the cart. If a discount or a pricing plugin still lowers a gift card line, the card is created with the amount actually paid, never more.
+* Money safety: a double click at checkout, a payment notice arriving at the same time as the thank you page, or two status changes at once can no longer charge or return a gift card twice. Each order's gift card changes now run one at a time.
+* Unfinished payments: gift card money held by every unpaid order is released after the hold time, not only for the newest orders.
+* Paying a failed order again: the gift cards are charged again before the payment. If a card was spent in the meantime, the payment stops with a clear message instead of the shop getting less money.
+* Too many wrong codes: the limit now counts each shopper on their own, so one person on a shared connection cannot lock out others. Shops behind a reverse proxy on their own network count the real visitor address (other proxies, such as Cloudflare, can be added with the lafu_gift_cards_trusted_proxies filter).
+* Chargebacks and failed payments: when a paid order fails afterwards or is disputed (moves from paid to On hold), gift cards it bought that nobody has used yet are cancelled, and used ones are flagged for the shop to check. If the order is paid again, new cards are created. Deleting a paid order flags its cards and cancels nothing.
+* Email preview: the gift card email can be previewed under WooCommerce > Settings > Emails without an error.
 
 = 1.12.2 =
 * Plugin header: author is LAFU, like our other plugins on WordPress.org.
@@ -215,3 +289,11 @@ The gift card page bundles the Fraunces and Manrope fonts (SIL Open Font License
 
 = 1.0.0 =
 * First release.
+
+== Upgrade Notice ==
+
+= 1.13.2 =
+Fixes fixed cart coupons lowering gift card prices on WooCommerce 8.5 to 8.8, and makes the admin button hover colour easier to read.
+
+= 1.13.1 =
+Shops that set How the card is used to In person or Appointment no longer take gift card codes at the web shop checkout. The gift card email now matches the gift card page.

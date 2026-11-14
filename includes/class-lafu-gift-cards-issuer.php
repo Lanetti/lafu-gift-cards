@@ -24,10 +24,19 @@ class Lafu_Gift_Cards_Issuer {
 		add_action( 'woocommerce_order_status_cancelled', array( __CLASS__, 'cancel_for_order' ) );
 		add_action( 'woocommerce_order_status_refunded', array( __CLASS__, 'cancel_for_order' ) );
 		add_action( 'woocommerce_order_refunded', array( __CLASS__, 'claw_refund' ), 20, 2 );
+		// A paid order that fails afterwards, is disputed (paid to on-hold) or
+		// is trashed or deleted: unused cards stop working, used ones are
+		// flagged for the shop.
+		add_action( 'woocommerce_order_status_changed', array( __CLASS__, 'hold_on_status' ), 20, 3 );
+		add_action( 'woocommerce_trash_order', array( __CLASS__, 'hold_on_trash' ) );
+		add_action( 'woocommerce_before_delete_order', array( __CLASS__, 'hold_on_trash' ) );
+		add_action( 'wp_trash_post', array( __CLASS__, 'hold_on_trash_post' ) );
+		add_action( 'before_delete_post', array( __CLASS__, 'hold_on_trash_post' ) );
 
 		add_action( self::DELIVER_HOOK, array( __CLASS__, 'deliver' ) );
 		add_action( Lafu_Gift_Cards_Install::DAILY_HOOK, array( __CLASS__, 'daily' ) );
 		add_filter( 'woocommerce_email_classes', array( __CLASS__, 'email_class' ) );
+		add_filter( 'woocommerce_prepare_email_for_preview', array( __CLASS__, 'email_preview' ) );
 
 		add_filter( 'woocommerce_hidden_order_itemmeta', array( __CLASS__, 'hidden_meta' ) );
 		add_action( 'woocommerce_after_order_itemmeta', array( __CLASS__, 'admin_item_cards' ), 10, 2 );
@@ -93,6 +102,12 @@ class Lafu_Gift_Cards_Issuer {
 		$emails  = ! empty( $data['recipient_emails'] ) ? array_values( (array) $data['recipient_emails'] ) : array();
 		$buyer   = trim( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() );
 		$deliver = self::deliver_at( isset( $data['deliver_date'] ) ? (string) $data['deliver_date'] : '' );
+		$amount  = self::issue_amount( $order, $item, $data );
+		if ( $amount <= 0 ) {
+			/* translators: %s: product name */
+			$order->add_order_note( sprintf( __( 'No gift card was created for %s: nothing was paid for this line. Check the order and create the card by hand if it is due.', 'lafu-gift-cards' ), $item->get_name() ) );
+			return;
+		}
 
 		for ( $i = 0; $i < $need; $i++ ) {
 			$index = count( $cards );
@@ -109,7 +124,7 @@ class Lafu_Gift_Cards_Issuer {
 			$fields  = apply_filters(
 				'lafu_gift_cards_issue_data',
 				array(
-					'amount'          => isset( $data['amount'] ) ? $data['amount'] : 0,
+					'amount'          => $amount,
 					'currency'        => $order->get_currency(),
 					'design'          => isset( $data['design'] ) ? $data['design'] : '',
 					'meta'            => array_merge(
@@ -171,6 +186,46 @@ class Lafu_Gift_Cards_Issuer {
 	}
 
 	/**
+	 * Value of each card of a line: the amount chosen in the buyer form, but
+	 * never more than was actually paid per card. A discount that lowered the
+	 * line (a coupon or a pricing plugin) would otherwise create money.
+	 *
+	 * @param WC_Order              $order Order.
+	 * @param WC_Order_Item_Product $item  Line.
+	 * @param array                 $data  Card data from the buyer form.
+	 * @return float
+	 */
+	public static function issue_amount( $order, $item, $data ) {
+		$face = Lafu_Gift_Cards_Store::money( isset( $data['amount'] ) ? $data['amount'] : 0 );
+		$qty  = max( 1, (int) $item->get_quantity() );
+		$paid = Lafu_Gift_Cards_Store::money( ( (float) $item->get_total() + (float) $item->get_total_tax() ) / $qty );
+		$use  = $face;
+		if ( $paid < $face - 0.01 ) {
+			$use = $paid;
+			$order->add_order_note(
+				sprintf(
+					/* translators: 1: product name, 2: amount chosen, 3: amount paid per card */
+					__( 'Gift card line %1$s was discounted: %2$s was chosen but %3$s was paid per card, so each card was created with the amount paid.', 'lafu-gift-cards' ),
+					$item->get_name(),
+					lafu_gift_cards_plain_price( $face, array( 'currency' => $order->get_currency() ) ),
+					lafu_gift_cards_plain_price( $paid, array( 'currency' => $order->get_currency() ) )
+				)
+			);
+		}
+		/**
+		 * Value of each card issued from a paid order line. Defaults to the
+		 * chosen amount, capped at what was paid per card.
+		 *
+		 * @param float                 $use   Amount to issue per card.
+		 * @param float                 $face  Amount chosen in the buyer form.
+		 * @param float                 $paid  Amount paid per card.
+		 * @param WC_Order              $order Order.
+		 * @param WC_Order_Item_Product $item  Line.
+		 */
+		return Lafu_Gift_Cards_Store::money( apply_filters( 'lafu_gift_cards_issue_amount', $use, $face, $paid, $order, $item ) );
+	}
+
+	/**
 	 * When the purchase is cancelled or fully refunded, the cards stop
 	 * working. Money already spent from a card cannot be taken back, so
 	 * that case gets an order note for the shop.
@@ -206,6 +261,165 @@ class Lafu_Gift_Cards_Issuer {
 				$order->add_order_note( sprintf( __( 'Gift card %s cancelled.', 'lafu-gift-cards' ), Lafu_Gift_Cards_Codes::mask( $card->code ) ) );
 			}
 		}
+	}
+
+	/**
+	 * A paid order moved to failed or on-hold (a chargeback or dispute
+	 * usually does that), or to the trash.
+	 *
+	 * @param int    $order_id Order ID.
+	 * @param string $from     Old status.
+	 * @param string $to       New status.
+	 */
+	public static function hold_on_status( $order_id, $from, $to ) {
+		$paid = wc_get_is_paid_statuses();
+		if ( in_array( $to, $paid, true ) ) {
+			self::clear_review( $order_id );
+			return;
+		}
+		if ( 'trash' === $to ) {
+			self::hold_for_order( $order_id, ! in_array( $from, $paid, true ) );
+		} elseif ( 'failed' === $to || ( 'on-hold' === $to && in_array( $from, $paid, true ) ) ) {
+			self::hold_for_order( $order_id, true );
+		}
+	}
+
+	/**
+	 * The order is trashed or about to be deleted.
+	 *
+	 * @param int $order_id Order ID.
+	 */
+	public static function hold_on_trash( $order_id ) {
+		$order = $order_id ? wc_get_order( absint( $order_id ) ) : null;
+		if ( ! $order || $order instanceof WC_Order_Refund ) {
+			return;
+		}
+		$status = $order->get_status();
+		if ( 'trash' === $status ) {
+			$status = (string) $order->get_meta( '_wp_trash_meta_status' );
+		}
+		$status = 0 === strpos( $status, 'wc-' ) ? substr( $status, 3 ) : $status;
+		// Deleting a paid order is not a refund: its cards are flagged for
+		// the shop, never cancelled.
+		self::hold_for_order( $order->get_id(), ! in_array( $status, wc_get_is_paid_statuses(), true ) );
+	}
+
+	/**
+	 * The order is trashed or deleted as a post (orders stored as posts).
+	 *
+	 * @param int $post_id Post ID.
+	 */
+	public static function hold_on_trash_post( $post_id ) {
+		if ( in_array( get_post_type( $post_id ), wc_get_order_types(), true ) ) {
+			self::hold_on_trash( absint( $post_id ) );
+		}
+	}
+
+	/**
+	 * Stop the cards bought by an order whose payment is no longer good.
+	 * A card nobody has used yet is cancelled, and it is created again if
+	 * the order is paid again (for example when the shop wins the dispute).
+	 * A card that was already used stays active and is flagged for the shop,
+	 * because the money spent cannot be taken back. A paid order that is
+	 * only deleted flags its cards and cancels nothing.
+	 *
+	 * @param int  $order_id    Order ID.
+	 * @param bool $void_unused Cancel cards nobody has used yet.
+	 */
+	public static function hold_for_order( $order_id, $void_unused = true ) {
+		$order = $order_id ? wc_get_order( $order_id ) : null;
+		if ( ! $order || $order instanceof WC_Order_Refund ) {
+			return;
+		}
+		$cards = Lafu_Gift_Cards_Store::for_order( $order->get_id() );
+		if ( ! $cards ) {
+			return;
+		}
+		$lock = 'lafu_gc_issue_' . $order->get_id();
+		if ( ! Lafu_Gift_Cards_Store::acquire_lock( $lock ) ) {
+			return;
+		}
+		try {
+			/* translators: %s: order number */
+			$reason = sprintf( __( 'Payment of order %s is no longer valid (failed, disputed or deleted)', 'lafu-gift-cards' ), $order->get_order_number() );
+			foreach ( $cards as $card ) {
+				$card = Lafu_Gift_Cards_Store::get( (int) $card->id );
+				if ( ! $card || Lafu_Gift_Cards_Store::STATUS_ACTIVE !== $card->status ) {
+					continue;
+				}
+				$code = Lafu_Gift_Cards_Codes::mask( $card->code );
+				if ( ! $void_unused ) {
+					Lafu_Gift_Cards_Store::set_meta( (int) $card->id, array( 'review' => $reason ) );
+					/* translators: %s: masked code */
+					$order->add_order_note( sprintf( __( 'Check gift card %s: this paid order was deleted, but the card is still active.', 'lafu-gift-cards' ), $code ) );
+					/** This action is documented below. */
+					do_action( 'lafu_gift_cards_needs_review', (int) $card->id, $order );
+					continue;
+				}
+				if ( Lafu_Gift_Cards_Store::money( $card->balance ) >= Lafu_Gift_Cards_Store::money( $card->initial_amount ) ) {
+					if ( true === Lafu_Gift_Cards_Store::void( (int) $card->id, $reason ) ) {
+						self::forget_card_on_line( $order, $card );
+						/* translators: %s: masked code */
+						$order->add_order_note( sprintf( __( 'Gift card %s cancelled because the payment is no longer valid. It was not used yet. If the order is paid again, a new card is created.', 'lafu-gift-cards' ), $code ) );
+					}
+					continue;
+				}
+				$used = Lafu_Gift_Cards_Store::money( (float) $card->initial_amount - (float) $card->balance );
+				Lafu_Gift_Cards_Store::set_meta( (int) $card->id, array( 'review' => $reason ) );
+				$order->add_order_note(
+					sprintf(
+						/* translators: 1: masked code, 2: amount already used */
+						__( 'Check gift card %1$s: the payment of this order is no longer valid, but %2$s of the card was already used. The card is still active. Cancel it under WooCommerce > Gift cards if needed.', 'lafu-gift-cards' ),
+						$code,
+						lafu_gift_cards_plain_price( $used, array( 'currency' => $card->currency ) )
+					)
+				);
+				/**
+				 * A used card bought by an order whose payment failed, was
+				 * disputed or deleted. The shop should check it.
+				 *
+				 * @param int      $card_id Card ID.
+				 * @param WC_Order $order   Order.
+				 */
+				do_action( 'lafu_gift_cards_needs_review', (int) $card->id, $order );
+			}
+		} finally {
+			Lafu_Gift_Cards_Store::release_lock( $lock );
+		}
+	}
+
+	/**
+	 * The order is paid again: the flag on its used cards goes away.
+	 *
+	 * @param int $order_id Order ID.
+	 */
+	private static function clear_review( $order_id ) {
+		foreach ( Lafu_Gift_Cards_Store::for_order( absint( $order_id ) ) as $card ) {
+			if ( ! empty( Lafu_Gift_Cards_Store::meta( $card )['review'] ) ) {
+				Lafu_Gift_Cards_Store::set_meta( (int) $card->id, array( 'review' => null ) );
+			}
+		}
+	}
+
+	/**
+	 * Take a cancelled card off its order line, so paying the order again
+	 * creates a new one.
+	 *
+	 * @param WC_Order $order Order.
+	 * @param object   $card  Card row.
+	 */
+	private static function forget_card_on_line( $order, $card ) {
+		$item = $card->order_item_id ? $order->get_item( (int) $card->order_item_id ) : null;
+		if ( ! $item instanceof WC_Order_Item_Product ) {
+			return;
+		}
+		$ids  = array_values( array_filter( array_map( 'absint', lafu_gift_cards_meta_array( $item, self::CARDS_META ) ) ) );
+		$keep = array_values( array_diff( $ids, array( (int) $card->id ) ) );
+		if ( $keep === $ids ) {
+			return;
+		}
+		$item->update_meta_data( self::CARDS_META, $keep );
+		$item->save();
 	}
 
 	/**
@@ -364,6 +578,16 @@ class Lafu_Gift_Cards_Issuer {
 		require_once LAFU_GIFT_CARDS_DIR . '/includes/class-lafu-gift-cards-email.php';
 		$emails['Lafu_Gift_Cards_Email'] = new Lafu_Gift_Cards_Email();
 		return $emails;
+	}
+
+	/**
+	 * Give our email a sample card in WooCommerce's email preview.
+	 *
+	 * @param WC_Email $email Email being previewed.
+	 * @return WC_Email
+	 */
+	public static function email_preview( $email ) {
+		return class_exists( 'Lafu_Gift_Cards_Email' ) ? Lafu_Gift_Cards_Email::prepare_preview( $email ) : $email;
 	}
 
 	/**

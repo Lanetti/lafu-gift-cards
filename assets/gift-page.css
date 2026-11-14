@@ -203,9 +203,15 @@
 	color: #4a4251;
 }
 
-.lafu-gp-how p span {
+.lafu-gp-how p > span:first-child {
+	flex: none;
 	font-weight: 800;
 	color: #5b2a86;
+}
+
+.lafu-gp-how a {
+	color: inherit;
+	text-decoration: underline;
 }
 
 .lafu-gp-balance {
@@ -411,7 +417,7 @@
 	box-shadow: none;
 }
 
-.lafu-gp--letter .lafu-gp-how p span {
+.lafu-gp--letter .lafu-gp-how p > span:first-child {
 	color: #8a4b2a;
 }
 

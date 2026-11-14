@@ -10,6 +10,7 @@
 	--lafu-pink: #d46aab;
 	--lafu-pink-dark: #9c3c75;
 	--lafu-violet: #6172cb;
+	--lafu-violet-dark: #4a58a8;
 	--lafu-cyan: #62d0ea;
 	--lafu-green: #256b3d;
 	--lafu-red: #b42318;
@@ -163,10 +164,11 @@
 	transition: background .15s, border-color .15s, color .15s;
 }
 
+/* White text needs the dark pink (6.3:1); the light brand pink is only 3.3:1. */
 .lafu-gc-btn:hover,
 .lafu-gc-btn:focus {
-	background: var(--lafu-pink);
-	border-color: var(--lafu-pink);
+	background: var(--lafu-pink-dark);
+	border-color: var(--lafu-pink-dark);
 	color: #fff;
 }
 
@@ -188,9 +190,12 @@
 	border-color: var(--lafu-red);
 }
 
-.lafu-gc-btn--danger:hover {
+/* Dark red, not the pink of .lafu-gc-btn:focus: white on #8f1c13 is 14.7:1. */
+.lafu-gc-btn--danger:hover,
+.lafu-gc-btn--danger:focus {
 	background: #8f1c13;
 	border-color: #8f1c13;
+	color: #fff;
 }
 
 .lafu-gc-btn--block {
@@ -345,7 +350,7 @@
 	width: 24px;
 	height: 24px;
 	border-radius: 50%;
-	background: linear-gradient(135deg, var(--lafu-pink), var(--lafu-violet));
+	background: linear-gradient(135deg, var(--lafu-pink-dark), var(--lafu-violet-dark));
 	color: #fff;
 	font-size: 12px;
 	font-weight: 700;
@@ -1096,9 +1101,11 @@
 	font-weight: 600;
 }
 
-.lafu-gc-tablebar .search-box .button:hover {
-	background: var(--lafu-pink);
-	border-color: var(--lafu-pink);
+.lafu-gc-tablebar .search-box .button:hover,
+.lafu-gc-tablebar .search-box .button:focus {
+	background: var(--lafu-pink-dark);
+	border-color: var(--lafu-pink-dark);
+	color: #fff;
 }
 
 .lafu-gc-status-used,
@@ -1278,7 +1285,7 @@
 	grid-column: span 2;
 	min-height: 150px;
 	border: 0;
-	background: linear-gradient(135deg, var(--lafu-pink), var(--lafu-violet));
+	background: linear-gradient(135deg, var(--lafu-pink-dark), var(--lafu-violet-dark));
 	color: #fff;
 }
 

@@ -59,7 +59,7 @@ class Lafu_Gift_Cards_Settings {
 		if ( self::SECTION !== $section ) {
 			return $settings;
 		}
-		return array(
+		$fields = array(
 			array(
 				'title' => __( 'Gift cards', 'lafu-gift-cards' ),
 				'type'  => 'title',
@@ -110,6 +110,7 @@ class Lafu_Gift_Cards_Settings {
 				'id'   => 'lafu_gift_cards_options',
 			),
 		);
+		return array_merge( $fields, Lafu_Gift_Cards_Redemption::settings_fields() );
 	}
 
 	/**

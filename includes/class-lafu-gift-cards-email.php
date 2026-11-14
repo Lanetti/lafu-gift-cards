@@ -116,6 +116,56 @@ class Lafu_Gift_Cards_Email extends WC_Email {
 	}
 
 	/**
+	 * WooCommerce's email preview (Settings > Emails) never calls trigger(),
+	 * so it gets a sample card instead of none.
+	 *
+	 * @param WC_Email $email Email being previewed.
+	 * @return WC_Email
+	 */
+	public static function prepare_preview( $email ) {
+		if ( $email instanceof self && ! $email->card ) {
+			$email->card                     = self::sample_card();
+			$email->placeholders['{amount}'] = lafu_gift_cards_plain_price( $email->card->initial_amount, array( 'currency' => $email->card->currency ) );
+			$email->placeholders['{sender}'] = $email->card->sender_name;
+		}
+		return $email;
+	}
+
+	/**
+	 * A card with sample details, for previews. It is never saved.
+	 *
+	 * @return object
+	 */
+	public static function sample_card() {
+		$amount = 50;
+		return (object) array(
+			'id'              => 0,
+			'code'            => 'SAMP-LE12-3456-7890',
+			'lookup'          => 'SAMPLE1234567890',
+			'status'          => Lafu_Gift_Cards_Store::STATUS_ACTIVE,
+			'currency'        => get_woocommerce_currency(),
+			'initial_amount'  => $amount,
+			'balance'         => $amount,
+			'design'          => Lafu_Gift_Cards_Designs::resolve( '' ),
+			'recipient_name'  => 'Anna',
+			'recipient_email' => 'anna@example.com',
+			'sender_name'     => 'Sam',
+			'message'         => __( 'Happy birthday!', 'lafu-gift-cards' ),
+			'physical'        => 0,
+			'deliver_at'      => null,
+			'delivered_at'    => null,
+			'expires_at'      => Lafu_Gift_Cards_Settings::default_expiry(),
+			'buyer_id'        => 0,
+			'user_id'         => 0,
+			'order_id'        => 0,
+			'order_item_id'   => 0,
+			'meta'            => null,
+			'created_at'      => current_time( 'mysql', true ),
+			'updated_at'      => current_time( 'mysql', true ),
+		);
+	}
+
+	/**
 	 * HTML body.
 	 *
 	 * @return string
@@ -124,7 +174,7 @@ class Lafu_Gift_Cards_Email extends WC_Email {
 		return wc_get_template_html(
 			$this->template_html,
 			array(
-				'card'               => $this->card,
+				'card'               => $this->card ? $this->card : self::sample_card(),
 				'email_heading'      => $this->get_heading(),
 				'additional_content' => $this->get_additional_content(),
 				'sent_to_admin'      => false,
@@ -145,7 +195,7 @@ class Lafu_Gift_Cards_Email extends WC_Email {
 		return wc_get_template_html(
 			$this->template_plain,
 			array(
-				'card'               => $this->card,
+				'card'               => $this->card ? $this->card : self::sample_card(),
 				'email_heading'      => $this->get_heading(),
 				'additional_content' => $this->get_additional_content(),
 				'sent_to_admin'      => false,

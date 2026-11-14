@@ -23,12 +23,22 @@
 	function Panel( props ) {
 		var data = ( props.extensions && props.extensions[ NS ] ) || {};
 		var applied = data.applied || [];
+		// No box when a card cannot pay for this cart (only gift cards in it, or cards are used in person only).
+		var hidden = false === data.available && ! applied.length;
+		// Cards used in person only: store credit buttons, no code field.
+		var codes = false !== data.codes;
+		// Cards the cart just took off: say why instead of only changing the total.
+		var dropped = data.notice || '';
 		var saved = data.saved || [];
 		var code = useState( '' );
 		var busy = useState( false );
 		var note = useState( null );
 		var open = useState( false );
 		var expanded = open[ 0 ] || applied.length > 0;
+
+		if ( hidden ) {
+			return dropped ? el( 'p', { className: 'lafu-gc-redeem-message is-error', role: 'alert' }, dropped ) : null;
+		}
 
 		function send( payload ) {
 			busy[ 1 ]( true );
@@ -117,7 +127,7 @@
 				? el(
 						'div',
 						{ className: 'lafu-gc-block-body' },
-						el(
+						codes ? el(
 							'div',
 							{ className: 'lafu-gc-redeem-row', role: 'group', 'aria-label': t( 'label' ) },
 							el( 'input', {
@@ -137,14 +147,14 @@
 								},
 							} ),
 							el( 'button', { type: 'button', className: 'lafu-gc-apply', disabled: busy[ 0 ], onClick: apply }, t( 'apply' ) )
-						),
+						) : null,
 						savedButtons.length ? el( 'p', { className: 'lafu-gc-saved' }, t( 'saved' ), ' ', savedButtons ) : null,
 						rows.length ? el( 'ul', { className: 'lafu-gc-block-list' }, rows ) : null,
-						note[ 0 ]
+						note[ 0 ] || dropped
 							? el(
 									'p',
-									{ className: 'lafu-gc-redeem-message' + ( note[ 0 ].error ? ' is-error' : '' ), role: 'status' },
-									note[ 0 ].text
+									{ className: 'lafu-gc-redeem-message' + ( ! note[ 0 ] || note[ 0 ].error ? ' is-error' : '' ), role: 'status' },
+									note[ 0 ] ? note[ 0 ].text : dropped
 							  )
 							: null
 				  )

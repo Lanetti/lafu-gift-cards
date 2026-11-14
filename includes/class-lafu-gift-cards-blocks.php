@@ -55,8 +55,9 @@ class Lafu_Gift_Cards_Blocks {
 	}
 
 	/**
-	 * Applied cards with the amount each pays, and the customer's saved
-	 * cards. Codes are masked.
+	 * Applied cards with the amount each pays, the customer's saved cards,
+	 * whether a card can pay for this cart at all (available) and why cards
+	 * were just taken off (notice). Codes are masked.
 	 *
 	 * @return array
 	 */
@@ -72,9 +73,18 @@ class Lafu_Gift_Cards_Blocks {
 				);
 			}
 		}
+		$codes = true === Lafu_Gift_Cards_Redeem::online_allowed();
+		// Cards used in person only: store credit can still be picked, codes cannot be typed.
+		$saved = Lafu_Gift_Cards_Redeem::saved_cards();
+		if ( ! $codes && $saved && true !== Lafu_Gift_Cards_Redeem::online_allowed( null, Lafu_Gift_Cards_Store::get( $saved[0]['id'] ) ) ) {
+			$saved = array();
+		}
 		return array(
-			'applied' => $applied,
-			'saved'   => Lafu_Gift_Cards_Redeem::saved_cards(),
+			'available' => $codes || (bool) $saved,
+			'codes'     => $codes,
+			'applied'   => $applied,
+			'saved'     => $saved,
+			'notice'    => Lafu_Gift_Cards_Redeem::cart_notice(),
 		);
 	}
 
@@ -85,15 +95,33 @@ class Lafu_Gift_Cards_Blocks {
 	 */
 	public static function cart_schema() {
 		return array(
-			'applied' => array(
+			'available' => array(
+				'description' => __( 'Whether a gift card can pay for this cart.', 'lafu-gift-cards' ),
+				'type'        => 'boolean',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+			),
+			'codes'     => array(
+				'description' => __( 'Whether a gift card code can be typed for this cart.', 'lafu-gift-cards' ),
+				'type'        => 'boolean',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+			),
+			'applied'   => array(
 				'description' => __( 'Gift cards paying for this cart.', 'lafu-gift-cards' ),
 				'type'        => 'array',
 				'context'     => array( 'view', 'edit' ),
 				'readonly'    => true,
 			),
-			'saved'   => array(
+			'saved'     => array(
 				'description' => __( 'Gift cards saved to the customer account.', 'lafu-gift-cards' ),
 				'type'        => 'array',
+				'context'     => array( 'view', 'edit' ),
+				'readonly'    => true,
+			),
+			'notice'    => array(
+				'description' => __( 'Why gift cards were taken off the cart, once.', 'lafu-gift-cards' ),
+				'type'        => 'string',
 				'context'     => array( 'view', 'edit' ),
 				'readonly'    => true,
 			),
@@ -118,9 +146,14 @@ class Lafu_Gift_Cards_Blocks {
 			$result = Lafu_Gift_Cards_Redeem::apply_code( isset( $data['code'] ) ? sanitize_text_field( (string) $data['code'] ) : '' );
 		}
 		if ( is_wp_error( $result ) ) {
-			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'lafu_gift_cards_' . esc_html( $result->get_error_code() ), esc_html( $result->get_error_message() ), 400 );
+			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'lafu_gift_cards_' . sanitize_key( $result->get_error_code() ), $result->get_error_message(), 400 ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Store API sends it as JSON; the block panel shows it as text.
 		}
 		Lafu_Gift_Cards_Redeem::recalculate();
+		// A card that was accepted but then taken off (nothing it may pay) is an error too, not a silent total.
+		$dropped = Lafu_Gift_Cards_Redeem::cart_notice();
+		if ( '' !== $dropped ) {
+			throw new \Automattic\WooCommerce\StoreApi\Exceptions\RouteException( 'lafu_gift_cards_dropped', $dropped, 400 ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Store API sends it as JSON; the block panel shows it as text.
+		}
 	}
 
 	/**

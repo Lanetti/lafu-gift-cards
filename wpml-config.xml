@@ -21,5 +21,9 @@
 			<key name="from" />
 			<key name="until" />
 		</key>
+		<key name="lafu_gift_cards_button_label" />
+		<key name="lafu_gift_cards_button_url" />
+		<key name="lafu_gift_cards_howto_heading" />
+		<key name="lafu_gift_cards_howto_text" />
 	</admin-texts>
 </wpml-config>

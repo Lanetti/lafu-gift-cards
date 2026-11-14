@@ -421,7 +421,8 @@ class Lafu_Gift_Cards_Designs {
 	 *
 	 * @param string      $key  Design key.
 	 * @param object|null $card Card row or preview object (for its chosen colour).
-	 * @return array background (CSS), art (the layers over the colour), solid, text, accent, light, colour (bool).
+	 * @return array background (CSS), art (the layers over the colour), solid, text, accent, light, colour (bool),
+	 *               and the same layers one by one for email: gradient, photo (URL), veil, size, position, overlay (art and pattern).
 	 */
 	public static function paint( $key, $card = null ) {
 		$design = self::get( $key );
@@ -431,24 +432,34 @@ class Lafu_Gift_Cards_Designs {
 			$chosen = isset( $meta['colour'] ) ? $meta['colour'] : ( isset( $card->colour ) ? $card->colour : '' );
 		}
 		$design = self::with_colour( $design, (string) $key, (string) $chosen );
-		$layers = array();
+
+		$layers   = array();
+		$photo    = '';
+		$veil_css = '';
+		$size     = 'cover';
+		$position = '50% 50%';
 		if ( ! empty( $design['image'] ) ) {
 			$veil     = isset( $design['veil'] ) ? max( 0, min( 0.8, (float) $design['veil'] ) ) : 0.3;
 			$size     = isset( $design['size'] ) ? preg_replace( '/[^0-9.% a-z]/', '', (string) $design['size'] ) : 'cover';
 			$position = isset( $design['position'] ) ? preg_replace( '/[^0-9.% ]/', '', (string) $design['position'] ) : '50% 50%';
 			$tint     = self::is_light( $design['text'] ) ? '0,0,0' : '255,255,255';
-			$layers[] = 'linear-gradient(90deg,rgba(' . $tint . ',' . $veil . '),rgba(' . $tint . ',' . round( $veil * 0.35, 3 ) . '))';
-			$layers[] = 'url("' . esc_url_raw( $design['image'] ) . '") ' . $position . '/' . $size . ' no-repeat';
+			$photo    = esc_url_raw( $design['image'] );
+			$veil_css = 'linear-gradient(90deg,rgba(' . $tint . ',' . $veil . '),rgba(' . $tint . ',' . round( $veil * 0.35, 3 ) . '))';
+			$layers[] = $veil_css;
+			$layers[] = 'url("' . $photo . '") ' . $position . '/' . $size . ' no-repeat';
 		}
+		$overlay = array();
 		if ( ! empty( $design['art'] ) ) {
-			$layers[] = self::art_layer( $design['art'] );
+			$overlay[] = self::art_layer( $design['art'] );
 		}
 		if ( ! empty( $design['pattern'] ) ) {
-			$layers[] = 'url("data:image/svg+xml,' . rawurlencode( $design['pattern'] ) . '")';
+			$overlay[] = 'url("data:image/svg+xml,' . rawurlencode( $design['pattern'] ) . '")';
 		}
+		$layers   = array_merge( $layers, $overlay );
 		$art      = implode( ',', $layers );
-		$layers[] = 'linear-gradient(135deg,' . $design['background'] . ',' . $design['background2'] . ')';
-		return array(
+		$gradient = 'linear-gradient(135deg,' . $design['background'] . ',' . $design['background2'] . ')';
+		$layers[] = $gradient;
+		$paint    = array(
 			'background' => implode( ',', $layers ),
 			'art'        => $art,
 			'solid'      => $design['background'],
@@ -456,7 +467,24 @@ class Lafu_Gift_Cards_Designs {
 			'accent'     => $design['accent'],
 			'light'      => self::is_light( $design['background'] ) && empty( $design['image'] ),
 			'colour'     => ! empty( $design['colour'] ),
+			'gradient'   => $gradient,
+			'photo'      => $photo,
+			'veil'       => $veil_css,
+			'size'       => $size,
+			'position'   => $position,
+			'overlay'    => implode( ',', $overlay ),
 		);
+
+		/**
+		 * How a card is painted, for example a buyer's photo (photo, veil,
+		 * size, position) that the email card shows like the page card.
+		 *
+		 * @param array       $paint Keys as returned.
+		 * @param string      $key   Design key.
+		 * @param object|null $card  Card row or preview object.
+		 */
+		$filtered = apply_filters( 'lafu_gift_cards_card_paint', $paint, (string) $key, $card );
+		return is_array( $filtered ) ? array_merge( $paint, $filtered ) : $paint;
 	}
 
 	/**
@@ -570,15 +598,38 @@ class Lafu_Gift_Cards_Designs {
 	}
 
 	/**
-	 * The card as HTML. The email version uses only tables and solid
-	 * colours, which every mail client shows; the web version adds the
-	 * gradient, art and an SVG QR code (styled in assets/card.css).
+	 * The card background for an email: the solid colour first (every mail
+	 * app), then the same gradient and photo the web card shows, for the mail
+	 * apps that draw background images. A mail app that cannot read a layer
+	 * keeps the one before it.
+	 *
+	 * @param array $paint paint() result.
+	 * @return string CSS declarations.
+	 */
+	public static function email_background( array $paint ) {
+		$css   = 'background-color:' . $paint['solid'] . ';background-image:' . $paint['gradient'] . ';';
+		$photo = isset( $paint['photo'] ) ? esc_url_raw( (string) $paint['photo'] ) : '';
+		if ( '' !== $photo ) {
+			$photo = 'url("' . $photo . '")';
+			$css  .= 'background-image:' . $photo . ';background-image:' . $paint['veil'] . ',' . $photo . ',' . $paint['gradient'] . ';background-size:' . $paint['size'] . ';background-position:' . $paint['position'] . ';background-repeat:no-repeat;';
+		}
+		return $css;
+	}
+
+	/**
+	 * The card as HTML. The email version is built from tables with the
+	 * same colours, gradient, photo and illustration as the web card, each
+	 * on top of a solid colour so every mail app shows a card; the web
+	 * version adds an SVG QR code (styled in assets/card.css).
 	 *
 	 * @param object $card    Card row (or a preview object with the same fields).
 	 * @param string $context web or email.
 	 * @return string Escaped HTML.
 	 */
 	public static function render( $card, $context = 'web' ) {
+		if ( ! is_object( $card ) ) {
+			return '';
+		}
 		$paint = self::paint( $card->design, $card );
 		$texts = self::card_texts( $card );
 		$shop  = $texts['shop'];
@@ -600,13 +651,17 @@ class Lafu_Gift_Cards_Designs {
 		$layout = self::layout( self::get( $card->design ) );
 
 		if ( 'email' === $context ) {
-			$box = 'background-color:' . $paint['solid'] . ';color:' . $text . ';border-radius:14px;padding:26px;font-family:Helvetica,Arial,sans-serif;' . ( $paint['light'] ? 'border:1px solid #e4e4e7;' : '' );
+			$box = self::email_background( $paint ) . 'color:' . $text . ';border-radius:14px;font-family:Helvetica,Arial,sans-serif;' . ( $paint['light'] ? 'border:1px solid #e4e4e7;' : '' );
 			/** This filter is documented below. */
 			$box = (string) apply_filters( 'lafu_gift_cards_card_style', $box, $card, 'email' );
 			$qr  = '' !== $code ? Lafu_Gift_Cards_Qr::html_table( $code, 2 ) : '';
+			// The illustration sits on its own cell: a mail app that drops it still shows the card. Never over a photo.
+			$art_cell = '' !== (string) $paint['overlay'] && '' === (string) $paint['photo'] ? 'background:' . $paint['overlay'] . ';border-radius:14px;' : '';
 			ob_start();
 			?>
-			<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="lafu-gc-card" style="<?php echo esc_attr( $box ); ?>">
+			<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="lafu-gc-card" bgcolor="<?php echo esc_attr( $paint['solid'] ); ?>" style="<?php echo esc_attr( $box ); ?>">
+			<tr><td style="<?php echo esc_attr( $art_cell . 'padding:0;' ); ?>">
+			<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:0;padding:26px;">
 				<?php if ( $layout['heading'] ) : ?>
 					<tr>
 						<td style="padding:0 0 4px;color:<?php echo esc_attr( $accent ); ?>;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;"><?php echo esc_html( $texts['label'] ); ?></td>
@@ -637,12 +692,14 @@ class Lafu_Gift_Cards_Designs {
 									<?php endif; ?>
 								</td>
 								<?php if ( $qr ) : ?>
-									<td valign="bottom" align="right" width="70" style="padding:0 0 0 12px;"><?php echo $qr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Table built from booleans in Lafu_Gift_Cards_Qr, no user data. ?></td>
+									<td valign="bottom" align="<?php echo esc_attr( is_rtl() ? 'left' : 'right' ); ?>" width="70" style="<?php echo esc_attr( is_rtl() ? 'padding:0 12px 0 0;' : 'padding:0 0 0 12px;' ); ?>"><?php echo $qr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Table built from booleans in Lafu_Gift_Cards_Qr, no user data. ?></td>
 								<?php endif; ?>
 							</tr>
 						</table>
 					</td>
 				</tr>
+			</table>
+			</td></tr>
 			</table>
 			<?php
 			return (string) ob_get_clean();
